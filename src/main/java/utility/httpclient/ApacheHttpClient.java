@@ -6,6 +6,8 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.net.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utility.httpclient.responsehandler.UserResponseHandler;
 
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class ApacheHttpClient extends HttpClient {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger("Apache Http Client Logger");
 
     @Override
     public ResponseDto<User> getUserRequest() {
@@ -29,14 +33,14 @@ public class ApacheHttpClient extends HttpClient {
                     .build();
             request.setUri(uri);
         } catch (URISyntaxException e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         ResponseDto<User> response = null;
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             response = httpClient.execute(request, new UserResponseHandler());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return response;
