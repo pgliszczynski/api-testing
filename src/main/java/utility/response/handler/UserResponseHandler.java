@@ -20,7 +20,7 @@ public class UserResponseHandler implements HttpClientResponseHandler<ResponseDt
         int responseCode = classicHttpResponse.getCode();
 
         Optional<HttpEntity> entity = Optional.ofNullable(classicHttpResponse.getEntity());
-        User user = new User();
+        User user = null;
         if(entity.isPresent()) {
             user = objectMapper.readValue(entity.get().getContent(), User.class);
         }
