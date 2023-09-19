@@ -8,7 +8,7 @@ import utility.request.RequestBuilder;
 import utility.request.RequestSender;
 import utility.url.UrlUtility;
 
-public class ApacheHttpClient extends HttpClient {
+public class ApacheHttpClient implements HttpClient {
 
     @Override
     public ResponseDto<User> getUserRequest() {
