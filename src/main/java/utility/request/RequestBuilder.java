@@ -33,6 +33,12 @@ public class RequestBuilder {
         return this;
     }
 
+    public RequestBuilder post() {
+        LOGGER.info("Request method set to POST");
+        this.httpMethod = HttpMethod.POST;
+        return this;
+    }
+
     public RequestBuilder addParameter(String param, String value) {
         LOGGER.info("Request parameter: " + param + " added");
         urlParameters.add(new BasicNameValuePair(param, value));
