@@ -1,4 +1,4 @@
-package utility.responsehandler;
+package utility.response.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.User;

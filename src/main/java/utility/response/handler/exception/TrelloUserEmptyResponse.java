@@ -1,4 +1,4 @@
-package utility.responsehandler.exception;
+package utility.response.handler.exception;
 
 public class TrelloUserEmptyResponse extends RuntimeException {
     public TrelloUserEmptyResponse() {

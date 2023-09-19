@@ -14,6 +14,13 @@ public class User {
     @JsonProperty
     private String email;
 
+    public User(String id, String fullName, String username, String email) {
+        this.id = id;
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+    }
+
     public String getId() {
         return id;
     }
