@@ -3,10 +3,10 @@ package utility.httpclient;
 import model.User;
 import model.response.ResponseDto;
 import org.apache.hc.core5.http.ClassicHttpRequest;
-import utility.httpclient.authorization.AuthorizationUtility;
-import utility.httpclient.request.RequestBuilder;
-import utility.httpclient.request.RequestSender;
-import utility.httpclient.url.UrlUtility;
+import utility.authorization.AuthorizationUtility;
+import utility.request.RequestBuilder;
+import utility.request.RequestSender;
+import utility.url.UrlUtility;
 
 public class ApacheHttpClient extends HttpClient {
 

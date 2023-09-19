@@ -1,4 +1,4 @@
-package utility.httpclient.request;
+package utility.request;
 
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.apache.hc.core5.http.NameValuePair;
@@ -6,7 +6,7 @@ import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utility.httpclient.request.methods.HttpMethod;
+import utility.request.methods.HttpMethod;
 
 import java.net.URI;
 import java.net.URISyntaxException;

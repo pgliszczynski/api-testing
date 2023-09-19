@@ -1,4 +1,4 @@
-package utility.httpclient.authorization;
+package utility.authorization;
 
 public class AuthorizationUtility {
     private final static String API_KEY = "b62bb764cf339a96a65de5f0de87797e";

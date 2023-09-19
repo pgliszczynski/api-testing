@@ -1,4 +1,4 @@
-package utility.httpclient.request.methods;
+package utility.request.methods;
 
 public enum HttpMethod {
     GET,

@@ -1,4 +1,4 @@
-package utility.httpclient.request;
+package utility.request;
 
 import model.User;
 import model.response.ResponseDto;
@@ -7,7 +7,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utility.httpclient.responsehandler.UserResponseHandler;
+import utility.responsehandler.UserResponseHandler;
 
 import java.io.IOException;
 
