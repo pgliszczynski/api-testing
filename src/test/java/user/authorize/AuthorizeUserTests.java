@@ -1,4 +1,4 @@
-package authorize.user;
+package user.authorize;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
