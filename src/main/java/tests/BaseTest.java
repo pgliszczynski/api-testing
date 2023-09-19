@@ -1,6 +1,5 @@
 package tests;
 
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utility.httpclient.HttpClient;

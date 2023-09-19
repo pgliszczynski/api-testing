@@ -4,7 +4,6 @@ import model.Board;
 import model.User;
 import model.response.ResponseDto;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeGroups;
 import utility.config.BoardConfig;
 import utility.config.UserConfig;
 import utility.httpclient.ApacheHttpClient;

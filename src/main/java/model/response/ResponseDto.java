@@ -1,7 +1,5 @@
 package model.response;
 
-import model.User;
-
 import java.util.Objects;
 
 public class ResponseDto<T> {

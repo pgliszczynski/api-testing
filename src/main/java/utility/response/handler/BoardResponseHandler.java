@@ -2,7 +2,6 @@ package utility.response.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Board;
-import model.User;
 import model.response.ResponseDto;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
