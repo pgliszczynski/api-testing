@@ -22,31 +22,39 @@ public class RequestBuilder {
     private final static Logger LOGGER = LoggerFactory.getLogger("Request Builder Logger");
 
     public RequestBuilder(String url) {
+        LOGGER.info("Request url set to: " + url);
         this.url = url;
         urlParameters = new ArrayList<>();
     }
 
     public RequestBuilder get() {
+        LOGGER.info("Request method set to GET");
         this.httpMethod = HttpMethod.GET;
         return this;
     }
 
     public RequestBuilder addParameter(String param, String value) {
+        LOGGER.info("Request parameter: " + param + " added");
         urlParameters.add(new BasicNameValuePair(param, value));
         return this;
     }
 
     public ClassicHttpRequest build() {
+        LOGGER.info("Started building request");
         httpRequest = RequestFactory.createRequest(httpMethod, url);
         buildParams();
+        LOGGER.info("Request built");
         return httpRequest;
     }
 
     private void buildParams() {
+        LOGGER.info("Started building request parameters");
         httpRequest.setUri(buildUri());
+        LOGGER.info("Params built and set to request");
     }
 
     private URI buildUri() {
+        LOGGER.info("Started building URI");
         URI uri = null;
         try {
             uri = new URIBuilder(httpRequest.getUri())
@@ -55,6 +63,7 @@ public class RequestBuilder {
         } catch (URISyntaxException e) {
             LOGGER.error(e.getMessage());
         }
+        LOGGER.info("Finished building URI");
         return uri;
     }
 }
