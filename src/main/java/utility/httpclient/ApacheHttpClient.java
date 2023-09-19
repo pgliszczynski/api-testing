@@ -11,46 +11,42 @@ import utility.request.RequestSender;
 import utility.url.UrlUtility;
 
 public class ApacheHttpClient implements HttpClient {
+    private ClassicHttpRequest request;
+    private RequestSender requestSender;
 
     @Override
     public ResponseDto<User> getUserRequest() {
-        ClassicHttpRequest request = buildUserGetRequest();
-        RequestSender requestSender = new RequestSender(request);
+        createUserGetRequest();
         return requestSender.sendUserRequest();
     }
 
     @Override
     public ResponseDto<Board> postNewBoard() {
-        ClassicHttpRequest request = buildBoardPostRequest();
-        RequestSender requestSender = new RequestSender(request);
+        createBoardPostRequest();
         return requestSender.sendBoardRequest();
     }
 
-    private ClassicHttpRequest buildUserGetRequest() {
-        return new RequestBuilder(UrlUtility.getUserUrl())
-                .addParameter(
-                        "key",
-                        AuthorizationUtility.getApiKey())
-                .addParameter(
-                        "token",
-                        AuthorizationUtility.getTrelloToken())
+    private void createUserGetRequest() {
+        request = new RequestBuilder(UrlUtility.getUserUrl())
+                .addTrelloValidation()
                 .get()
                 .build();
+        createRequestSender();
     }
 
-    private ClassicHttpRequest buildBoardPostRequest() {
-        return new RequestBuilder(UrlUtility.geBoardUrl())
-                .addParameter(
-                        "key",
-                        AuthorizationUtility.getApiKey())
-                .addParameter(
-                        "token",
-                        AuthorizationUtility.getTrelloToken())
+    private void createBoardPostRequest() {
+        request = new RequestBuilder(UrlUtility.geBoardUrl())
                 .addParameter(
                         "name",
                         BoardConfig.getCreatedBoardName()
                 )
+                .addTrelloValidation()
                 .post()
                 .build();
+        createRequestSender();
+    }
+
+    private void createRequestSender() {
+        requestSender = new RequestSender(request);
     }
 }

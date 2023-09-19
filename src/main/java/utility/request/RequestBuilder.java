@@ -1,11 +1,13 @@
 package utility.request;
 
+import jdk.nashorn.internal.runtime.options.LoggingOption;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utility.authorization.AuthorizationUtility;
 import utility.request.methods.HttpMethod;
 
 import java.net.URI;
@@ -42,6 +44,17 @@ public class RequestBuilder {
     public RequestBuilder addParameter(String param, String value) {
         LOGGER.info("Request parameter: " + param + " added");
         urlParameters.add(new BasicNameValuePair(param, value));
+        return this;
+    }
+
+    public RequestBuilder addTrelloValidation() {
+        LOGGER.info("Adding Trello validation API_KEY and token");
+        this.addParameter(
+                "key",
+                AuthorizationUtility.getApiKey());
+        this.addParameter(
+                "token",
+                AuthorizationUtility.getTrelloToken());
         return this;
     }
 
