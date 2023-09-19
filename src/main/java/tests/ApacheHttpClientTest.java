@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import utility.config.BoardConfig;
 import utility.config.UserConfig;
 import utility.httpclient.ApacheHttpClient;
+import utility.response.builder.ResponseBuilder;
 import utility.validation.ResponseValidator;
 
 public abstract class ApacheHttpClientTest extends BaseTest {
@@ -25,26 +26,12 @@ public abstract class ApacheHttpClientTest extends BaseTest {
 
     @Override
     public void createExpectedUserResponse() {
-        expectedUserResponse = new ResponseDto<>(
-                200,
-                new User(
-                        UserConfig.getId(),
-                        UserConfig.getFullName(),
-                        UserConfig.getUsername(),
-                        UserConfig.getEmail()
-                )
-        );
+        expectedUserResponse = ResponseBuilder.getExpectedUserResponse();
     }
 
     @Override
     public void createExpectedBoardResponse() {
-        expectedBoardResponse = new ResponseDto<>(
-                200,
-                new Board(
-                        "0",
-                        BoardConfig.getCreatedBoardName()
-                )
-        );
+        expectedBoardResponse = ResponseBuilder.getExpectedBoardResponse();
     }
 
     @Override
