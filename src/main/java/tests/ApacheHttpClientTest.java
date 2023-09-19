@@ -57,4 +57,8 @@ public abstract class ApacheHttpClientTest extends BaseTest {
     public void createBoardValidator() {
         boardResponseValidator = new ResponseValidator<>(expectedBoardResponse);
     }
+
+    protected void updateExpectedBoardId() {
+        expectedBoardResponse.getT().setId(actualBoardResponse.getT().getId());
+    }
 }
