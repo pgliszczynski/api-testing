@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utility.httpclient.HttpClient;
 
@@ -16,6 +17,9 @@ public abstract class BaseTest {
         createExpectedUserResponse();
         createUserValidator();
     }
+
+    @BeforeMethod
+    public abstract void sendRequest();
 
     public abstract void createExpectedUserResponse();
 

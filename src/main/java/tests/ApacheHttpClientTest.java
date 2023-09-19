@@ -11,7 +11,9 @@ import utility.validation.ResponseValidator;
 public abstract class ApacheHttpClientTest extends BaseTest {
     private static ResponseDto<User> expectedUserResponse;
     private static ResponseDto<Board> expectedBoardResponse;
-    private static ResponseValidator<User> userResponseValidator;
+    protected static ResponseDto<User> actualUserResponse;
+    protected static ResponseDto<Board> actualBoardResponse;
+    protected static ResponseValidator<User> userResponseValidator;
 
     @BeforeClass
     @Override

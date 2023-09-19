@@ -2,28 +2,40 @@ package authorize.user;
 
 import model.User;
 import model.response.ResponseDto;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import utility.httpclient.ApacheHttpClient;
-import utility.httpclient.HttpClient;
+import tests.ApacheHttpClientTest;
 
-public class AuthorizeUserTests {
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.testng.Assert.assertTrue;
+
+public class AuthorizeUserTests extends ApacheHttpClientTest {
 
     @Test
-    void shouldAuthorizeAndReturnUser() {
+    void shouldAuthorizeAndReturnUserTestNG() {
         //Given
-        HttpClient httpClient = new ApacheHttpClient();
-        SoftAssert softAssert = new SoftAssert();
 
         //When
-        ResponseDto<User> userResponse = httpClient.getUserRequest();
 
         //Then
-        softAssert.assertEquals(userResponse.getStatusCode(), 200);
-        softAssert.assertEquals(userResponse.getT().getId(), "65082a8cbb67cb72bede5f5b");
-        softAssert.assertEquals(userResponse.getT().getFullName(), "gliszczynskip5");
-        softAssert.assertEquals(userResponse.getT().getUsername(), "gliszczynskip5");
-        softAssert.assertEquals(userResponse.getT().getEmail(), "gliszczynskip5@gmail.com");
-        softAssert.assertAll();
+        assertTrue(userResponseValidator.isExpectedResponse(actualUserResponse));
+    }
+
+    @Test
+    void shouldAuthorizeAndReturnUserAssertJ() {
+        //Given
+
+        //When
+
+        //Then
+        assertThat(userResponseValidator.isExpectedResponse(actualUserResponse))
+                .isTrue();
+    }
+
+    @BeforeMethod
+    @Override
+    public void sendRequest() {
+        actualUserResponse = httpClient.getUserRequest();
     }
 }
