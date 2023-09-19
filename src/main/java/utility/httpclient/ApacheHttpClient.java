@@ -22,7 +22,8 @@ public class ApacheHttpClient implements HttpClient {
     @Override
     public ResponseDto<Board> postNewBoard() {
         ClassicHttpRequest request = buildBoardPostRequest();
-        return null;
+        RequestSender requestSender = new RequestSender(request);
+        return requestSender.sendBoardRequest();
     }
 
     private ClassicHttpRequest buildUserGetRequest() {
