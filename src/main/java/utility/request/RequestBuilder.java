@@ -41,6 +41,12 @@ public class RequestBuilder {
         return this;
     }
 
+    public RequestBuilder put() {
+        LOGGER.info("Request method set to PUT");
+        this.httpMethod = HttpMethod.PUT;
+        return this;
+    }
+
     public RequestBuilder addParameter(String param, String value) {
         LOGGER.info("Request parameter: " + param + " added");
         urlParameters.add(new BasicNameValuePair(param, value));

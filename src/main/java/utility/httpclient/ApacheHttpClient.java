@@ -31,6 +31,12 @@ public class ApacheHttpClient implements HttpClient {
         return requestSender.sendBoardRequest();
     }
 
+    @Override
+    public ResponseDto<Board> updateBoard(String boardId) {
+        createBoardPutRequest(boardId);
+        return requestSender.sendBoardRequest();
+    }
+
     private void createUserGetRequest() {
         request = new RequestBuilder(UrlUtility.getUserUrl())
                 .addTrelloValidation()
@@ -55,6 +61,18 @@ public class ApacheHttpClient implements HttpClient {
         request = new RequestBuilder(UrlUtility.getBoardUrlWithId(boardId))
                 .addTrelloValidation()
                 .get()
+                .build();
+        createRequestSender();
+    }
+
+    private void createBoardPutRequest(String boardId) {
+        request = new RequestBuilder(UrlUtility.getBoardUrlWithId(boardId))
+                .addParameter(
+                        "name",
+                        BoardConfig.getUpdatedBoardName()
+                )
+                .addTrelloValidation()
+                .put()
                 .build();
         createRequestSender();
     }
