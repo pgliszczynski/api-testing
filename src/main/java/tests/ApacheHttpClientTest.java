@@ -4,6 +4,7 @@ import model.Board;
 import model.User;
 import model.response.ResponseDto;
 import org.testng.annotations.BeforeClass;
+import utility.config.BoardConfig;
 import utility.httpclient.ApacheHttpClient;
 import utility.response.builder.ResponseBuilder;
 import utility.validation.ResponseValidator;
@@ -44,6 +45,10 @@ public abstract class ApacheHttpClientTest extends BaseTest {
 
     protected void updateExpectedBoardId() {
         expectedBoardResponse.getT().setId(actualBoardResponse.getT().getId());
+    }
+
+    protected void updateExpectedBoardName() {
+        expectedBoardResponse.getT().setName(BoardConfig.getUpdatedBoardName());
     }
 
     protected String getExpectedBoardId() {

@@ -32,4 +32,12 @@ public class ResponseDto<T> {
     public int hashCode() {
         return Objects.hash(statusCode, t);
     }
+
+    @Override
+    public String toString() {
+        return "ResponseDto{" +
+                "statusCode=" + statusCode +
+                ", t=" + t +
+                '}';
+    }
 }

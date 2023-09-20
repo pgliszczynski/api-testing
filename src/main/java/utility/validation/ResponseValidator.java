@@ -29,6 +29,8 @@ public class ResponseValidator<T> {
     public boolean isExpectedResponse() {
         LOGGER.info("Comparing expected and actual response");
         isValidResponse();
+        LOGGER.info("Actual Response: " + actualResponse.toString());
+        LOGGER.info("Expected Response: " + expectedResponse.toString());
         return expectedResponse.equals(actualResponse);
     }
 }
