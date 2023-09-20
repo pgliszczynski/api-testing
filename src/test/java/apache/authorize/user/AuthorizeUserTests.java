@@ -1,4 +1,4 @@
-package user.authorize;
+package apache.authorize.user;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

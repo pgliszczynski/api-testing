@@ -1,4 +1,4 @@
-package board.get;
+package apache.board.get;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

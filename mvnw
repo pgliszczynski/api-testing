@@ -1,10 +1,10 @@
 #!/bin/sh
 # ----------------------------------------------------------------------------
-# Licensed to the Apache Software Foundation (ASF) under one
+# Licensed to the apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
+# to you under the apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
@@ -19,7 +19,7 @@
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# Apache Maven Wrapper startup batch script, version 3.2.0
+# apache Maven Wrapper startup batch script, version 3.2.0
 #
 # Required ENV vars:
 # ------------------
@@ -216,7 +216,7 @@ else
         if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
             wget $QUIET "$wrapperUrl" -O "$wrapperJarPath" || rm -f "$wrapperJarPath"
         else
-            wget $QUIET --http-user="$MVNW_USERNAME" --http-password="$MVNW_PASSWORD" "$wrapperUrl" -O "$wrapperJarPath" || rm -f "$wrapperJarPath"
+            wget $QUIET --http-apache.authorize.user="$MVNW_USERNAME" --http-password="$MVNW_PASSWORD" "$wrapperUrl" -O "$wrapperJarPath" || rm -f "$wrapperJarPath"
         fi
     elif command -v curl > /dev/null; then
         log "Found curl ... using curl"
@@ -224,7 +224,7 @@ else
         if [ -z "$MVNW_USERNAME" ] || [ -z "$MVNW_PASSWORD" ]; then
             curl $QUIET -o "$wrapperJarPath" "$wrapperUrl" -f -L || rm -f "$wrapperJarPath"
         else
-            curl $QUIET --user "$MVNW_USERNAME:$MVNW_PASSWORD" -o "$wrapperJarPath" "$wrapperUrl" -f -L || rm -f "$wrapperJarPath"
+            curl $QUIET --apache.authorize.user "$MVNW_USERNAME:$MVNW_PASSWORD" -o "$wrapperJarPath" "$wrapperUrl" -f -L || rm -f "$wrapperJarPath"
         fi
     else
         log "Falling back to using Java to download"

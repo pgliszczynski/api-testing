@@ -1,9 +1,9 @@
 @REM ----------------------------------------------------------------------------
-@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM Licensed to the apache Software Foundation (ASF) under one
 @REM or more contributor license agreements.  See the NOTICE file
 @REM distributed with this work for additional information
 @REM regarding copyright ownership.  The ASF licenses this file
-@REM to you under the Apache License, Version 2.0 (the
+@REM to you under the apache License, Version 2.0 (the
 @REM "License"); you may not use this file except in compliance
 @REM with the License.  You may obtain a copy of the License at
 @REM
@@ -18,7 +18,7 @@
 @REM ----------------------------------------------------------------------------
 
 @REM ----------------------------------------------------------------------------
-@REM Apache Maven Wrapper startup batch script, version 3.2.0
+@REM apache Maven Wrapper startup batch script, version 3.2.0
 @REM
 @REM Required ENV vars:
 @REM JAVA_HOME - location of a JDK home dir
@@ -42,7 +42,7 @@ title %0
 @REM set %HOME% to equivalent of $HOME
 if "%HOME%" == "" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
 
-@REM Execute a user defined script before this one
+@REM Execute a apache.authorize.user defined script before this one
 if not "%MAVEN_SKIP_RC%" == "" goto skipRcPre
 @REM check for pre script, once with legacy .bat ending and once with .cmd ending
 if exist "%USERPROFILE%\mavenrc_pre.bat" call "%USERPROFILE%\mavenrc_pre.bat" %*
