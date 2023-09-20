@@ -47,6 +47,12 @@ public class RequestBuilder {
         return this;
     }
 
+    public RequestBuilder delete() {
+        LOGGER.info("Request method set to DELETE");
+        this.httpMethod = HttpMethod.DELETE;
+        return this;
+    }
+
     public RequestBuilder addParameter(String param, String value) {
         LOGGER.info("Request parameter: " + param + " added");
         urlParameters.add(new BasicNameValuePair(param, value));

@@ -33,4 +33,9 @@ public class ResponseValidator<T> {
         LOGGER.info("Expected Response: " + expectedResponse.toString());
         return expectedResponse.equals(actualResponse);
     }
+
+    public boolean isExpectedResponseWithNoBody() {
+        LOGGER.info("Checking response with no body (only response status code");
+        return actualResponse.getStatusCode() == 200;
+    }
 }

@@ -37,6 +37,12 @@ public class ApacheHttpClient implements HttpClient {
         return requestSender.sendBoardRequest();
     }
 
+    @Override
+    public ResponseDto<Board> deleteBoard(String boardId) {
+        createBoardDeleteRequest(boardId);
+        return requestSender.sendBoardRequest();
+    }
+
     private void createUserGetRequest() {
         request = new RequestBuilder(UrlUtility.getUserUrl())
                 .addTrelloValidation()
@@ -73,6 +79,14 @@ public class ApacheHttpClient implements HttpClient {
                 )
                 .addTrelloValidation()
                 .put()
+                .build();
+        createRequestSender();
+    }
+
+    private void createBoardDeleteRequest(String boardId) {
+        request = new RequestBuilder(UrlUtility.getBoardUrlWithId(boardId))
+                .addTrelloValidation()
+                .delete()
                 .build();
         createRequestSender();
     }

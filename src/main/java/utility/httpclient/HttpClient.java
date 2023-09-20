@@ -10,4 +10,5 @@ public interface HttpClient {
     ResponseDto<Board> postNewBoard();
     ResponseDto<Board> getBoardById(String boardId);
     ResponseDto<Board> updateBoard(String boardId);
+    ResponseDto<Board> deleteBoard(String boardId);
 }
