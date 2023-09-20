@@ -57,4 +57,8 @@ public abstract class BaseTest {
     protected void updateExpectedBoardName() {
         expectedBoardResponse.getT().setName(BoardConfig.getUpdatedBoardName());
     }
+
+    protected String getExpectedBoardId() {
+        return expectedBoardResponse.getT().getId();
+    }
 }

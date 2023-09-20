@@ -43,7 +43,13 @@ public class RestAssuredHttpClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> getBoardById(String boardId) {
-        return null;
+        createBoardGetByIdRequest(boardId);
+        createRequestSender();
+
+        Response actualResponse = requestSender.sendGetByIdRequest(boardId);
+
+        RestAssuredResponseValidator.verifyResponse(actualResponse, response);
+        return RestAssuredMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
@@ -63,9 +69,15 @@ public class RestAssuredHttpClient implements HttpClient {
     }
 
     private void createBoardPostRequest() {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest();
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest();
         updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildBoardResponse();
+    }
+
+    private void createBoardGetByIdRequest(String boardId) {
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest(boardId);
+        updateRequest(requestSpecification);
+        response = RestAssuredResponseBuilder.buildBoardResponseWithId(boardId);
     }
 
     private void createRequestSender() {

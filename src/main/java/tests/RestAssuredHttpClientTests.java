@@ -11,9 +11,4 @@ public abstract class RestAssuredHttpClientTests extends BaseTest {
     public void createHttpClient() {
         httpClient = new RestAssuredHttpClient();
     }
-
-    @BeforeClass
-    public void cleanExpectedValuesAfterPreviousTests() {
-        createExpectedValues();
-    }
 }

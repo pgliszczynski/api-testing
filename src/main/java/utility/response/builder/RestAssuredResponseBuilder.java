@@ -31,4 +31,14 @@ public class RestAssuredResponseBuilder {
                 .log(LogDetail.ALL)
                 .build();
     }
+
+    public static ResponseSpecification buildBoardResponseWithId(String boardId) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(200)
+                .expectContentType(ContentType.JSON)
+                .expectBody("id", equalTo(boardId))
+                .expectBody("name", equalTo(BoardConfig.getCreatedBoardName()))
+                .log(LogDetail.ALL)
+                .build();
+    }
 }

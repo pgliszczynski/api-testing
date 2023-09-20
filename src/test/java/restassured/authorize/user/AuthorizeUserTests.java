@@ -12,6 +12,7 @@ public class AuthorizeUserTests extends RestAssuredHttpClientTests {
     @Test(groups="authenticationRest", dependsOnGroups="delete")
     void shouldAuthorizeUser() {
         //Given
+        createExpectedValues();
 
         //When
 

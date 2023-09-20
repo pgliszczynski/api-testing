@@ -20,10 +20,20 @@ public class RestAssuredRequestBuilder {
                 .build();
     }
 
-    public static RequestSpecification buildGetBoardRequest() {
+    public static RequestSpecification buildGetBoardWithNameRequest() {
         return new RequestSpecBuilder()
                 .setBaseUri(UrlUtility.geBoardUrl())
                 .addQueryParam("name", BoardConfig.getCreatedBoardName())
+                .addQueryParam("key", AuthorizationUtility.getApiKey())
+                .addQueryParam("token", AuthorizationUtility.getTrelloToken())
+                .setContentType(ContentType.JSON)
+                .log(LogDetail.ALL)
+                .build();
+    }
+
+    public static RequestSpecification buildGetBoardRequest(String boardId) {
+        return new RequestSpecBuilder()
+                .setBaseUri(UrlUtility.geBoardUrl())
                 .addQueryParam("key", AuthorizationUtility.getApiKey())
                 .addQueryParam("token", AuthorizationUtility.getTrelloToken())
                 .setContentType(ContentType.JSON)
