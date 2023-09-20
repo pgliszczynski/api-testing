@@ -21,7 +21,7 @@ public class RestAssuredRequestBuilder {
 
     public static RequestSpecification buildBoardWithNameRequest(String name) {
         return new RequestSpecBuilder()
-                .setBaseUri(UrlUtility.geBoardUrl())
+                .setBaseUri(UrlUtility.getBoardUrl())
                 .addQueryParam("name", name)
                 .addQueryParam("key", AuthorizationUtility.getApiKey())
                 .addQueryParam("token", AuthorizationUtility.getTrelloToken())
@@ -32,7 +32,7 @@ public class RestAssuredRequestBuilder {
 
     public static RequestSpecification buildBoardRequest() {
         return new RequestSpecBuilder()
-                .setBaseUri(UrlUtility.geBoardUrl())
+                .setBaseUri(UrlUtility.getBoardUrl())
                 .addQueryParam("key", AuthorizationUtility.getApiKey())
                 .addQueryParam("token", AuthorizationUtility.getTrelloToken())
                 .setContentType(ContentType.JSON)

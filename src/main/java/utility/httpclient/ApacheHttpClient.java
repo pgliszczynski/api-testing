@@ -52,7 +52,7 @@ public class ApacheHttpClient implements HttpClient {
     }
 
     private void createBoardPostRequest() {
-        request = new RequestBuilder(UrlUtility.geBoardUrl())
+        request = new RequestBuilder(UrlUtility.getBoardUrl())
                 .addParameter(
                         "name",
                         BoardConfig.getCreatedBoardName()
