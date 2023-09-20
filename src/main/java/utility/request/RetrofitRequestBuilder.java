@@ -1,5 +1,6 @@
 package utility.request;
 
+import model.Board;
 import model.User;
 import retrofit2.Call;
 import utility.httpclient.service.TrelloService;
@@ -18,5 +19,9 @@ public class RetrofitRequestBuilder {
 
     public Call<User> userRequest() {
         return trelloService.authorizeUser(queryParameters);
+    }
+
+    public Call<Board> boardRequest() {
+        return trelloService.createBoard(queryParameters);
     }
 }

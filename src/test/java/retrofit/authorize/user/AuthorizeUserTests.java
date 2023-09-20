@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class AuthorizeUserTests extends RetrofitHttpClientTest {
 
-    @Test
+    @Test(groups="authorizeRetro", dependsOnGroups="deleteRest")
     void shouldAuthorizeUser() {
         //Given
         createExpectedValues();

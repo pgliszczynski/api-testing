@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+import utility.config.BoardConfig;
 import utility.httpclient.service.TrelloService;
 import utility.parameters.ParametersBuilder;
 import utility.request.RetrofitRequestBuilder;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class RetrofitClient implements HttpClient {
     private final TrelloService trelloService;
     private Map<String, String> queryParameters;
+    private RetrofitRequestBuilder retrofitRequestBuilder;
 
     private final static Logger LOGGER = LoggerFactory.getLogger("Retrofit Client");
 
@@ -40,6 +42,8 @@ public class RetrofitClient implements HttpClient {
     @Override
     public ResponseDto<User> getUserRequest() {
         createAuthorizationParameters();
+
+        createRequestBuilder();
         Call<User> request = createUserRequest();
 
         return sendUserRequest(request);
@@ -47,7 +51,15 @@ public class RetrofitClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> postNewBoard() {
-        return null;
+        createAuthorizationParameters();
+        addNameParameter(
+                BoardConfig.getCreatedBoardName()
+        );
+
+        createRequestBuilder();
+        Call<Board> request = createBoardRequest();
+
+        return sendBoardRequest(request);
     }
 
     @Override
@@ -72,18 +84,41 @@ public class RetrofitClient implements HttpClient {
                 .build();
     }
 
-    private Call<User> createUserRequest() {
-        LOGGER.info("Create request for getting user");
-        RetrofitRequestBuilder retrofitRequestBuilder = new RetrofitRequestBuilder(
+
+    private void addNameParameter(String name) {
+        LOGGER.info("Adding name parameter");
+        queryParameters.put(
+                "name",
+                name
+        );
+    }
+
+    private void createRequestBuilder() {
+        retrofitRequestBuilder = new RetrofitRequestBuilder(
                 trelloService,
                 queryParameters
         );
+    }
+
+    private Call<User> createUserRequest() {
+        LOGGER.info("Create request for getting user");
         return retrofitRequestBuilder.userRequest();
+    }
+
+    private Call<Board> createBoardRequest() {
+        LOGGER.info("Create request for creating board");
+        return retrofitRequestBuilder.boardRequest();
     }
 
     private ResponseDto<User> sendUserRequest(Call<User> request) {
         LOGGER.info("Starting to send request");
         RetrofitRequestSender<User> sender = new RetrofitRequestSender<>();
+        return sender.sendRequest(request);
+    }
+
+    private ResponseDto<Board> sendBoardRequest(Call<Board> request) {
+        LOGGER.info("Starting to send request");
+        RetrofitRequestSender<Board> sender = new RetrofitRequestSender<>();
         return sender.sendRequest(request);
     }
 }
