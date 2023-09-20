@@ -66,17 +66,23 @@ public class RestAssuredHttpClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> deleteBoard(String boardId) {
-        return null;
+        createBoardDeleteRequest();
+        createRequestSender();
+
+        Response actualResponse = requestSender.sendDeleteRequest(boardId);
+
+        RestAssuredResponseValidator.verifyResponse(actualResponse, response);
+        return RestAssuredMapper.mapToBoardResponse(actualResponse);
     }
 
     private void createUserRequest() {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetUserRequest();
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildUserRequest();
         updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildUserResponse();
     }
 
     private void createBoardPostRequest() {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest(
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildBoardWithNameRequest(
                 BoardConfig.getCreatedBoardName()
         );
         updateRequest(requestSpecification);
@@ -84,7 +90,7 @@ public class RestAssuredHttpClient implements HttpClient {
     }
 
     private void createBoardGetByIdRequest(String boardId) {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest();
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildBoardRequest();
         updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildBoardResponseWithId(
                 boardId,
@@ -92,13 +98,20 @@ public class RestAssuredHttpClient implements HttpClient {
     }
 
     private void createBoardPutRequest(String boardId) {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest(
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildBoardWithNameRequest(
                 BoardConfig.getUpdatedBoardName()
         );
         updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildBoardResponseWithId(
                 boardId,
                 BoardConfig.getUpdatedBoardName());
+    }
+
+
+    private void createBoardDeleteRequest() {
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildBoardRequest();
+        updateRequest(requestSpecification);
+        response = RestAssuredResponseBuilder.buildEmptyResponse();
     }
 
     private void createRequestSender() {

@@ -25,4 +25,8 @@ public class RestAssuredRequestSender {
     public Response sendPutRequest(String boardId) {
         return requestSpecification.when().put("/" + boardId);
     }
+
+    public Response sendDeleteRequest(String boardId) {
+        return requestSpecification.when().delete("/" + boardId);
+    }
 }

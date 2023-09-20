@@ -5,12 +5,11 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import utility.authorization.AuthorizationUtility;
-import utility.config.BoardConfig;
 import utility.url.UrlUtility;
 
 public class RestAssuredRequestBuilder {
 
-    public static RequestSpecification buildGetUserRequest() {
+    public static RequestSpecification buildUserRequest() {
         return new RequestSpecBuilder()
                 .setBaseUri(UrlUtility.getUserUrl())
                 .addQueryParam("key", AuthorizationUtility.getApiKey())
@@ -20,7 +19,7 @@ public class RestAssuredRequestBuilder {
                 .build();
     }
 
-    public static RequestSpecification buildGetBoardWithNameRequest(String name) {
+    public static RequestSpecification buildBoardWithNameRequest(String name) {
         return new RequestSpecBuilder()
                 .setBaseUri(UrlUtility.geBoardUrl())
                 .addQueryParam("name", name)
@@ -31,7 +30,7 @@ public class RestAssuredRequestBuilder {
                 .build();
     }
 
-    public static RequestSpecification buildGetBoardRequest() {
+    public static RequestSpecification buildBoardRequest() {
         return new RequestSpecBuilder()
                 .setBaseUri(UrlUtility.geBoardUrl())
                 .addQueryParam("key", AuthorizationUtility.getApiKey())

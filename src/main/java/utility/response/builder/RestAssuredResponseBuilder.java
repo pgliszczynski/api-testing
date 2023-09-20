@@ -41,4 +41,12 @@ public class RestAssuredResponseBuilder {
                 .log(LogDetail.ALL)
                 .build();
     }
+
+    public static ResponseSpecification buildEmptyResponse() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(200)
+                .expectContentType(ContentType.JSON)
+                .log(LogDetail.ALL)
+                .build();
+    }
 }
