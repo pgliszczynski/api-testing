@@ -56,6 +56,7 @@ public class ApacheHttpClient implements HttpClient {
                 .addTrelloValidation()
                 .get()
                 .build();
+        createRequestSender();
     }
 
     private void createRequestSender() {

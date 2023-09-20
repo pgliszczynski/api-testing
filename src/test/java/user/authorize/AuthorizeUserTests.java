@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class AuthorizeUserTests extends ApacheHttpClientTest {
 
-    @Test
+    @Test(groups="authentication")
     void shouldAuthorizeAndReturnUserTestNG() {
         //Given
 
@@ -19,7 +19,7 @@ public class AuthorizeUserTests extends ApacheHttpClientTest {
         assertTrue(userResponseValidator.isExpectedResponse());
     }
 
-    @Test
+    @Test(groups="authentication")
     void shouldAuthorizeAndReturnUserAssertJ() {
         //Given
 

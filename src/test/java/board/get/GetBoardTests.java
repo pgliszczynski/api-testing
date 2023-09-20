@@ -1,4 +1,4 @@
-package board.create;
+package board.get;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -7,10 +7,10 @@ import tests.ApacheHttpClientTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class CreateBoardTests extends ApacheHttpClientTest {
+public class GetBoardTests extends ApacheHttpClientTest {
 
-    @Test(groups="creation", dependsOnGroups="authentication")
-    void shouldCreateNewBoardTestNG() {
+    @Test(groups="getter", dependsOnGroups="creation")
+    void shouldGetABoardTestNg() {
         //Given
 
         //When
@@ -19,8 +19,8 @@ public class CreateBoardTests extends ApacheHttpClientTest {
         assertTrue(boardResponseValidator.isExpectedResponse());
     }
 
-    @Test(groups="creation", dependsOnGroups="authentication")
-    void shouldCreateNewBoardAssertJ() {
+    @Test(groups="getter", dependsOnGroups="creation")
+    void shouldGetABoardAssertJ() {
         //Given
 
         //When
@@ -33,8 +33,7 @@ public class CreateBoardTests extends ApacheHttpClientTest {
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualBoardResponse = httpClient.postNewBoard();
-        updateExpectedBoardId();
+        actualBoardResponse = httpClient.getBoardById(getExpectedBoardId());
         createBoardValidator();
     }
 }
