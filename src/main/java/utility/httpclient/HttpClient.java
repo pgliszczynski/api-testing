@@ -8,4 +8,5 @@ public interface HttpClient {
 
     ResponseDto<User> getUserRequest();
     ResponseDto<Board> postNewBoard();
+    ResponseDto<Board> getBoardById(String boardId);
 }

@@ -11,4 +11,8 @@ public class UrlUtility {
     public static String geBoardUrl() {
         return BOARD_URL;
     }
+
+    public static String getBoardUrlWithId(String boardId) {
+        return BOARD_URL + "/" + boardId;
+    }
 }

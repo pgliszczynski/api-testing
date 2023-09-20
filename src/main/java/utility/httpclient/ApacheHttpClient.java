@@ -4,7 +4,6 @@ import model.Board;
 import model.User;
 import model.response.ResponseDto;
 import org.apache.hc.core5.http.ClassicHttpRequest;
-import utility.authorization.AuthorizationUtility;
 import utility.config.BoardConfig;
 import utility.request.RequestBuilder;
 import utility.request.RequestSender;
@@ -26,6 +25,12 @@ public class ApacheHttpClient implements HttpClient {
         return requestSender.sendBoardRequest();
     }
 
+    @Override
+    public ResponseDto<Board> getBoardById(String boardId) {
+        createBoardGetRequest(boardId);
+        return requestSender.sendBoardRequest();
+    }
+
     private void createUserGetRequest() {
         request = new RequestBuilder(UrlUtility.getUserUrl())
                 .addTrelloValidation()
@@ -44,6 +49,13 @@ public class ApacheHttpClient implements HttpClient {
                 .post()
                 .build();
         createRequestSender();
+    }
+
+    private void createBoardGetRequest(String boardId) {
+        request = new RequestBuilder(UrlUtility.getBoardUrlWithId(boardId))
+                .addTrelloValidation()
+                .get()
+                .build();
     }
 
     private void createRequestSender() {
