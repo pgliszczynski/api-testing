@@ -21,4 +21,8 @@ public class RestAssuredRequestSender {
     public Response sendGetByIdRequest(String boardId) {
         return requestSpecification.when().get("/" + boardId);
     }
+
+    public Response sendPutRequest(String boardId) {
+        return requestSpecification.when().put("/" + boardId);
+    }
 }

@@ -32,12 +32,12 @@ public class RestAssuredResponseBuilder {
                 .build();
     }
 
-    public static ResponseSpecification buildBoardResponseWithId(String boardId) {
+    public static ResponseSpecification buildBoardResponseWithId(String boardId, String name) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
                 .expectBody("id", equalTo(boardId))
-                .expectBody("name", equalTo(BoardConfig.getCreatedBoardName()))
+                .expectBody("name", equalTo(name))
                 .log(LogDetail.ALL)
                 .build();
     }

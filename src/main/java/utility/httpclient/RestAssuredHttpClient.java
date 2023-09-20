@@ -6,6 +6,7 @@ import io.restassured.specification.ResponseSpecification;
 import model.Board;
 import model.User;
 import model.response.ResponseDto;
+import utility.config.BoardConfig;
 import utility.mapper.RestAssuredMapper;
 import utility.request.RestAssuredRequestBuilder;
 import utility.request.RestAssuredRequestSender;
@@ -54,7 +55,13 @@ public class RestAssuredHttpClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> updateBoard(String boardId) {
-        return null;
+        createBoardPutRequest(boardId);
+        createRequestSender();
+
+        Response actualResponse = requestSender.sendPutRequest(boardId);
+
+        RestAssuredResponseValidator.verifyResponse(actualResponse, response);
+        return RestAssuredMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
@@ -69,15 +76,29 @@ public class RestAssuredHttpClient implements HttpClient {
     }
 
     private void createBoardPostRequest() {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest();
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest(
+                BoardConfig.getCreatedBoardName()
+        );
         updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildBoardResponse();
     }
 
     private void createBoardGetByIdRequest(String boardId) {
-        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest(boardId);
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest();
         updateRequest(requestSpecification);
-        response = RestAssuredResponseBuilder.buildBoardResponseWithId(boardId);
+        response = RestAssuredResponseBuilder.buildBoardResponseWithId(
+                boardId,
+                BoardConfig.getCreatedBoardName());
+    }
+
+    private void createBoardPutRequest(String boardId) {
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardWithNameRequest(
+                BoardConfig.getUpdatedBoardName()
+        );
+        updateRequest(requestSpecification);
+        response = RestAssuredResponseBuilder.buildBoardResponseWithId(
+                boardId,
+                BoardConfig.getUpdatedBoardName());
     }
 
     private void createRequestSender() {
