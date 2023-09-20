@@ -15,10 +15,7 @@ public abstract class BaseTest {
     @BeforeSuite
     public void createExpectedValues() {
         createExpectedUserResponse();
-        createUserValidator();
-
         createExpectedBoardResponse();
-        createBoardValidator();
     }
 
     @BeforeMethod

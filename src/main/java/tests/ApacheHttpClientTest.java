@@ -4,8 +4,6 @@ import model.Board;
 import model.User;
 import model.response.ResponseDto;
 import org.testng.annotations.BeforeClass;
-import utility.config.BoardConfig;
-import utility.config.UserConfig;
 import utility.httpclient.ApacheHttpClient;
 import utility.response.builder.ResponseBuilder;
 import utility.validation.ResponseValidator;
@@ -36,12 +34,12 @@ public abstract class ApacheHttpClientTest extends BaseTest {
 
     @Override
     public void createUserValidator() {
-        userResponseValidator = new ResponseValidator<>(expectedUserResponse);
+        userResponseValidator = new ResponseValidator<>(expectedUserResponse, actualUserResponse);
     }
 
     @Override
     public void createBoardValidator() {
-        boardResponseValidator = new ResponseValidator<>(expectedBoardResponse);
+        boardResponseValidator = new ResponseValidator<>(expectedBoardResponse, actualBoardResponse);
     }
 
     protected void updateExpectedBoardId() {

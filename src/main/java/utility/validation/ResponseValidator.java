@@ -8,14 +8,16 @@ import static org.testng.Assert.fail;
 
 public class ResponseValidator<T> {
     private final ResponseDto<T> expectedResponse;
+    private final ResponseDto<T> actualResponse;
 
     private final static Logger LOGGER = LoggerFactory.getLogger("Validator Logger");
 
-    public ResponseValidator(ResponseDto<T> expectedResponse) {
+    public ResponseValidator(ResponseDto<T> expectedResponse, ResponseDto<T> actualResponse) {
         this.expectedResponse = expectedResponse;
+        this.actualResponse = actualResponse;
     }
 
-    private void isValidResponse(ResponseDto<T> actualResponse) {
+    private void isValidResponse() {
         LOGGER.info("Validating response");
         if (actualResponse.getStatusCode() < 100
         || actualResponse.getStatusCode() > 600
@@ -24,9 +26,9 @@ public class ResponseValidator<T> {
         }
     }
 
-    public boolean isExpectedResponse(ResponseDto<T> actualResponse) {
+    public boolean isExpectedResponse() {
         LOGGER.info("Comparing expected and actual response");
-        isValidResponse(actualResponse);
+        isValidResponse();
         return expectedResponse.equals(actualResponse);
     }
 }

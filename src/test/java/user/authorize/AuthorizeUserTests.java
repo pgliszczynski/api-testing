@@ -16,7 +16,7 @@ public class AuthorizeUserTests extends ApacheHttpClientTest {
         //When
 
         //Then
-        assertTrue(userResponseValidator.isExpectedResponse(actualUserResponse));
+        assertTrue(userResponseValidator.isExpectedResponse());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class AuthorizeUserTests extends ApacheHttpClientTest {
         //When
 
         //Then
-        assertThat(userResponseValidator.isExpectedResponse(actualUserResponse))
+        assertThat(userResponseValidator.isExpectedResponse())
                 .isTrue();
     }
 
@@ -34,5 +34,6 @@ public class AuthorizeUserTests extends ApacheHttpClientTest {
     @Override
     public void sendRequest() {
         actualUserResponse = httpClient.getUserRequest();
+        createUserValidator();
     }
 }

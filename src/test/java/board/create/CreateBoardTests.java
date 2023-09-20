@@ -16,7 +16,7 @@ public class CreateBoardTests extends ApacheHttpClientTest {
         //When
 
         //Then
-        assertTrue(boardResponseValidator.isExpectedResponse(actualBoardResponse));
+        assertTrue(boardResponseValidator.isExpectedResponse());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class CreateBoardTests extends ApacheHttpClientTest {
         //When
 
         //Then
-        assertThat(boardResponseValidator.isExpectedResponse(actualBoardResponse))
+        assertThat(boardResponseValidator.isExpectedResponse())
                 .isTrue();
     }
 
@@ -35,5 +35,6 @@ public class CreateBoardTests extends ApacheHttpClientTest {
     public void sendRequest() {
         actualBoardResponse = httpClient.postNewBoard();
         updateExpectedBoardId();
+        createBoardValidator();
     }
 }
