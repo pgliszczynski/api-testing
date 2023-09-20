@@ -13,4 +13,8 @@ public class RestAssuredRequestSender {
     public Response sendGetRequest() {
         return requestSpecification.when().get();
     }
+
+    public Response sendPostRequest() {
+        return requestSpecification.when().post();
+    }
 }

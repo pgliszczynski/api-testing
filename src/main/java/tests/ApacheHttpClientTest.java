@@ -12,14 +12,6 @@ public abstract class ApacheHttpClientTest extends BaseTest {
         httpClient = new ApacheHttpClient();
     }
 
-    protected void updateExpectedBoardId() {
-        expectedBoardResponse.getT().setId(actualBoardResponse.getT().getId());
-    }
-
-    protected void updateExpectedBoardName() {
-        expectedBoardResponse.getT().setName(BoardConfig.getUpdatedBoardName());
-    }
-
     protected String getExpectedBoardId() {
         return expectedBoardResponse.getT().getId();
     }

@@ -23,14 +23,22 @@ public class RestAssuredHttpClient implements HttpClient {
     public ResponseDto<User> getUserRequest() {
         createUserRequest();
         createRequestSender();
+
         Response actualResponse = requestSender.sendGetRequest();
+
         RestAssuredResponseValidator.verifyResponse(actualResponse, response);
         return RestAssuredMapper.mapToUserResponse(actualResponse);
     }
 
     @Override
     public ResponseDto<Board> postNewBoard() {
-        return null;
+        createBoardPostRequest();
+        createRequestSender();
+
+        Response actualResponse = requestSender.sendPostRequest();
+
+        RestAssuredResponseValidator.verifyResponse(actualResponse, response);
+        return RestAssuredMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
@@ -48,13 +56,23 @@ public class RestAssuredHttpClient implements HttpClient {
         return null;
     }
 
-    public void createUserRequest() {
+    private void createUserRequest() {
         RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetUserRequest();
-        request = given().spec(requestSpecification);
+        updateRequest(requestSpecification);
         response = RestAssuredResponseBuilder.buildUserResponse();
+    }
+
+    private void createBoardPostRequest() {
+        RequestSpecification requestSpecification = RestAssuredRequestBuilder.buildGetBoardRequest();
+        updateRequest(requestSpecification);
+        response = RestAssuredResponseBuilder.buildBoardResponse();
     }
 
     private void createRequestSender() {
         requestSender = new RestAssuredRequestSender(request);
+    }
+
+    private void updateRequest(RequestSpecification requestSpecification) {
+        request = given().spec(requestSpecification);
     }
 }

@@ -5,6 +5,7 @@ import model.User;
 import model.response.ResponseDto;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import utility.config.BoardConfig;
 import utility.httpclient.HttpClient;
 
 import org.testng.annotations.BeforeClass;
@@ -47,5 +48,13 @@ public abstract class BaseTest {
 
     public void createBoardValidator() {
         boardResponseValidator = new ResponseValidator<>(expectedBoardResponse, actualBoardResponse);
+    }
+
+    protected void updateExpectedBoardId() {
+        expectedBoardResponse.getT().setId(actualBoardResponse.getT().getId());
+    }
+
+    protected void updateExpectedBoardName() {
+        expectedBoardResponse.getT().setName(BoardConfig.getUpdatedBoardName());
     }
 }

@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class DeleteBoardTests extends ApacheHttpClientTest {
 
-    @Test(dependsOnGroups="update")
+    @Test(groups="delete", dependsOnGroups="update")
     void shouldDeleteBoardTestNg() {
         //Given
 

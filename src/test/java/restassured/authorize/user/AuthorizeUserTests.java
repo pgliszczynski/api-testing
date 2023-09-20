@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class AuthorizeUserTests extends RestAssuredHttpClientTests {
 
-    @Test(groups="authentication")
+    @Test(groups="authenticationRest", dependsOnGroups="delete")
     void shouldAuthorizeUser() {
         //Given
 
