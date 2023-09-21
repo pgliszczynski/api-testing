@@ -87,7 +87,12 @@ public class RetrofitClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> deleteBoard(String boardId) {
-        return null;
+        createAuthorizationParameters();
+
+        createRequestBuilder();
+        Call<Board> request = createDeleteBoardRequest(boardId);
+
+        return sendBoardRequest(request);
     }
 
     private void createAuthorizationParameters() {
@@ -132,6 +137,12 @@ public class RetrofitClient implements HttpClient {
     private Call<Board> createUpdateBoardRequest(String boardId) {
         LOGGER.info("Create request for updating board");
         return retrofitRequestBuilder.updateBoardRequest(boardId);
+    }
+
+
+    private Call<Board> createDeleteBoardRequest(String boardId) {
+        LOGGER.info("Create request for deleting board");
+        return retrofitRequestBuilder.deleteBoardRequest(boardId);
     }
 
     private ResponseDto<User> sendUserRequest(Call<User> request) {

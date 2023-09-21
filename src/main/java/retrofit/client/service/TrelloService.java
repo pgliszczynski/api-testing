@@ -26,4 +26,9 @@ public interface TrelloService {
     @PUT("board/{boardId}")
     Call<Board> updateBoard(@Path("boardId") String boardId,
                             @QueryMap Map<String, String> queryParameters);
+
+    @Headers("Accept: application/json")
+    @DELETE("board/{boardId}")
+    Call<Board> deleteBoard(@Path("boardId") String boardId,
+                            @QueryMap Map<String, String> queryParameters);
 }

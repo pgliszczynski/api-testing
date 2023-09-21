@@ -32,4 +32,8 @@ public class RequestBuilder {
     public Call<Board> updateBoardRequest(String boardId) {
         return trelloService.updateBoard(boardId, queryParameters);
     }
+
+    public Call<Board> deleteBoardRequest(String boardId) {
+        return trelloService.deleteBoard(boardId, queryParameters);
+    }
 }
