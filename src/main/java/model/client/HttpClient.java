@@ -5,7 +5,6 @@ import model.domain.User;
 import model.wrapper.ResponseWrapper;
 
 public interface HttpClient {
-
     ResponseWrapper<User> getUserRequest();
     ResponseWrapper<Board> postNewBoard();
     ResponseWrapper<Board> getBoardById(String boardId);

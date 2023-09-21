@@ -7,7 +7,7 @@ import org.apache.hc.core5.net.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utility.authorization.AuthorizationUtility;
-import model.methods.HttpMethod;
+import model.client.methods.HttpMethod;
 
 import java.net.URI;
 import java.net.URISyntaxException;

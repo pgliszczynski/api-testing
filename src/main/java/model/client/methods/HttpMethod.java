@@ -1,4 +1,4 @@
-package model.methods;
+package model.client.methods;
 
 public enum HttpMethod {
     GET,

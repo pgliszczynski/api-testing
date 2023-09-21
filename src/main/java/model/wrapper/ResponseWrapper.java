@@ -1,14 +1,35 @@
 package model.wrapper;
 
+import utility.authorization.AuthorizationUtility;
+
 import java.util.Objects;
 
 public class ResponseWrapper<T> {
     private final int statusCode;
     private final T body;
 
-    public ResponseWrapper(int statusCode, T t) {
-        this.statusCode = statusCode;
-        this.body = t;
+    public static class Builder<T> {
+        private T body;
+        private int statusCode;
+
+        public Builder<T> body(T body) {
+            this.body = body;
+            return this;
+        }
+
+        public Builder<T> statusCode(int statusCode) {
+            this.statusCode = statusCode;
+            return this;
+        }
+
+        public ResponseWrapper<T> build() {
+            return new ResponseWrapper<T>(this);
+        }
+    }
+
+    private ResponseWrapper(Builder<T> builder) {
+        this.body = builder.body;
+        this.statusCode = builder.statusCode;
     }
 
     public int getStatusCode() {

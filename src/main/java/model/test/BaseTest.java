@@ -2,6 +2,7 @@ package model.test;
 
 import model.domain.Board;
 import model.domain.User;
+import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import model.test.validation.ResponseValidator;
 import org.testng.annotations.BeforeMethod;
@@ -10,10 +11,14 @@ import utility.config.BoardConfig;
 import model.client.HttpClient;
 
 import org.testng.annotations.BeforeClass;
-import apache.response.ResponseBuilder;
+import model.creators.ResponseCreator;
 
-public abstract class BaseTest {
+public abstract class BaseTest<T> {
     protected static HttpClient httpClient;
+
+    protected RequestWrapper request;
+    protected ResponseWrapper<T> expectedResponse;
+    protected ResponseWrapper<T> actualResponse;
 
     protected static ResponseWrapper<User> expectedUserResponse;
     protected static ResponseWrapper<Board> expectedBoardResponse;
@@ -22,10 +27,10 @@ public abstract class BaseTest {
     protected static ResponseValidator<User> userResponseValidator;
     protected static ResponseValidator<Board> boardResponseValidator;
 
-    @BeforeClass
+    @BeforeSuite
     public abstract void createHttpClient();
 
-    @BeforeSuite
+    @BeforeClass
     public void createExpectedValues() {
         createExpectedUserResponse();
         createExpectedBoardResponse();
@@ -35,11 +40,11 @@ public abstract class BaseTest {
     public abstract void sendRequest();
 
     public void createExpectedUserResponse() {
-        expectedUserResponse = ResponseBuilder.getExpectedUserResponse();
+        expectedUserResponse = ResponseCreator.getUserResponse();
     }
 
     public void createExpectedBoardResponse() {
-        expectedBoardResponse = ResponseBuilder.getExpectedBoardResponse();
+        expectedBoardResponse = ResponseCreator.getBoardResponse();
     }
 
     public void createUserValidator() {
