@@ -2,7 +2,7 @@ package apache.request;
 
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpRequest;
@@ -22,8 +22,8 @@ public class RequestSender {
         this.request = request;
     }
 
-    public ResponseDto<User> sendUserRequest() {
-        ResponseDto<User> response = null;
+    public ResponseWrapper<User> sendUserRequest() {
+        ResponseWrapper<User> response = null;
         LOGGER.info("Trying to send request");
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             LOGGER.info("Sending request");
@@ -35,8 +35,8 @@ public class RequestSender {
         return response;
     }
 
-    public ResponseDto<Board> sendBoardRequest() {
-        ResponseDto<Board> response = null;
+    public ResponseWrapper<Board> sendBoardRequest() {
+        ResponseWrapper<Board> response = null;
         LOGGER.info("Trying to send request");
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             LOGGER.info("Sending request");

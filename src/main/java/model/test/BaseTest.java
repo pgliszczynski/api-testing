@@ -2,7 +2,7 @@ package model.test;
 
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import model.test.validation.ResponseValidator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -15,10 +15,10 @@ import apache.response.ResponseBuilder;
 public abstract class BaseTest {
     protected static HttpClient httpClient;
 
-    protected static ResponseDto<User> expectedUserResponse;
-    protected static ResponseDto<Board> expectedBoardResponse;
-    protected static ResponseDto<User> actualUserResponse;
-    protected static ResponseDto<Board> actualBoardResponse;
+    protected static ResponseWrapper<User> expectedUserResponse;
+    protected static ResponseWrapper<Board> expectedBoardResponse;
+    protected static ResponseWrapper<User> actualUserResponse;
+    protected static ResponseWrapper<Board> actualBoardResponse;
     protected static ResponseValidator<User> userResponseValidator;
     protected static ResponseValidator<Board> boardResponseValidator;
 
@@ -51,14 +51,14 @@ public abstract class BaseTest {
     }
 
     protected void updateExpectedBoardId() {
-        expectedBoardResponse.getT().setId(actualBoardResponse.getT().getId());
+        expectedBoardResponse.getBody().setId(actualBoardResponse.getBody().getId());
     }
 
     protected void updateExpectedBoardName() {
-        expectedBoardResponse.getT().setName(BoardConfig.getUpdatedBoardName());
+        expectedBoardResponse.getBody().setName(BoardConfig.getUpdatedBoardName());
     }
 
     protected String getExpectedBoardId() {
-        return expectedBoardResponse.getT().getId();
+        return expectedBoardResponse.getBody().getId();
     }
 }

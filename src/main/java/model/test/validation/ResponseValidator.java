@@ -1,18 +1,18 @@
 package model.test.validation;
 
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.testng.Assert.fail;
 
 public class ResponseValidator<T> {
-    private final ResponseDto<T> expectedResponse;
-    private final ResponseDto<T> actualResponse;
+    private final ResponseWrapper<T> expectedResponse;
+    private final ResponseWrapper<T> actualResponse;
 
     private final static Logger LOGGER = LoggerFactory.getLogger("Validator Logger");
 
-    public ResponseValidator(ResponseDto<T> expectedResponse, ResponseDto<T> actualResponse) {
+    public ResponseValidator(ResponseWrapper<T> expectedResponse, ResponseWrapper<T> actualResponse) {
         this.expectedResponse = expectedResponse;
         this.actualResponse = actualResponse;
     }
@@ -21,7 +21,7 @@ public class ResponseValidator<T> {
         LOGGER.info("Validating response");
         if (actualResponse.getStatusCode() < 100
         || actualResponse.getStatusCode() > 600
-        || actualResponse.getT() == null) {
+        || actualResponse.getBody() == null) {
             fail("Invalid response");
         }
     }

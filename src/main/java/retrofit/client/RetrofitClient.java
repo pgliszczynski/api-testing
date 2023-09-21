@@ -3,7 +3,7 @@ package retrofit.client;
 import model.client.HttpClient;
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;
@@ -41,7 +41,7 @@ public class RetrofitClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<User> getUserRequest() {
+    public ResponseWrapper<User> getUserRequest() {
         createAuthorizationParameters();
 
         createRequestBuilder();
@@ -51,7 +51,7 @@ public class RetrofitClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> postNewBoard() {
+    public ResponseWrapper<Board> postNewBoard() {
         createAuthorizationParameters();
         addNameParameter(
                 BoardConfig.getCreatedBoardName()
@@ -64,7 +64,7 @@ public class RetrofitClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> getBoardById(String boardId) {
+    public ResponseWrapper<Board> getBoardById(String boardId) {
         createAuthorizationParameters();
 
         createRequestBuilder();
@@ -73,7 +73,7 @@ public class RetrofitClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> updateBoard(String boardId) {
+    public ResponseWrapper<Board> updateBoard(String boardId) {
         createAuthorizationParameters();
         addNameParameter(
                 BoardConfig.getUpdatedBoardName()
@@ -86,7 +86,7 @@ public class RetrofitClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> deleteBoard(String boardId) {
+    public ResponseWrapper<Board> deleteBoard(String boardId) {
         createAuthorizationParameters();
 
         createRequestBuilder();
@@ -145,13 +145,13 @@ public class RetrofitClient implements HttpClient {
         return retrofitRequestBuilder.deleteBoardRequest(boardId);
     }
 
-    private ResponseDto<User> sendUserRequest(Call<User> request) {
+    private ResponseWrapper<User> sendUserRequest(Call<User> request) {
         LOGGER.info("Starting to send request");
         RequestSender<User> sender = new RequestSender<>();
         return sender.sendRequest(request);
     }
 
-    private ResponseDto<Board> sendBoardRequest(Call<Board> request) {
+    private ResponseWrapper<Board> sendBoardRequest(Call<Board> request) {
         LOGGER.info("Starting to send request");
         RequestSender<Board> sender = new RequestSender<>();
         return sender.sendRequest(request);

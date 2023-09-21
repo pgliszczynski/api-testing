@@ -2,14 +2,14 @@ package apache.response;
 
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import utility.config.BoardConfig;
 import utility.config.UserConfig;
 
 public class ResponseBuilder {
 
-    public static ResponseDto<User> getExpectedUserResponse() {
-        return new ResponseDto<>(
+    public static ResponseWrapper<User> getExpectedUserResponse() {
+        return new ResponseWrapper<>(
                 200,
                 new User(
                         UserConfig.getId(),
@@ -20,8 +20,8 @@ public class ResponseBuilder {
         );
     }
 
-    public static ResponseDto<Board> getExpectedBoardResponse() {
-        return new ResponseDto<>(
+    public static ResponseWrapper<Board> getExpectedBoardResponse() {
+        return new ResponseWrapper<>(
                 200,
                 new Board(
                         "0",

@@ -1,6 +1,6 @@
 package retrofit.request;
 
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;
@@ -9,15 +9,15 @@ import retrofit2.Response;
 import java.io.IOException;
 
 public class RequestSender<T> {
-    private ResponseDto<T> response;
+    private ResponseWrapper<T> response;
 
     private final static Logger LOGGER = LoggerFactory.getLogger("Retrofit Request Sender");
 
-    public ResponseDto<T> sendRequest(Call<T> request) {
+    public ResponseWrapper<T> sendRequest(Call<T> request) {
         LOGGER.info("Sending request");
         try {
             Response<T> response = request.execute();
-            this.response = new ResponseDto<>(
+            this.response = new ResponseWrapper<>(
                     response.code(),
                     response.body()
             );

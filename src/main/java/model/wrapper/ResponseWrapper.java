@@ -1,43 +1,43 @@
-package model.response;
+package model.wrapper;
 
 import java.util.Objects;
 
-public class ResponseDto<T> {
+public class ResponseWrapper<T> {
     private final int statusCode;
-    private final T t;
+    private final T body;
 
-    public ResponseDto(int statusCode, T t) {
+    public ResponseWrapper(int statusCode, T t) {
         this.statusCode = statusCode;
-        this.t = t;
+        this.body = t;
     }
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public T getT() {
-        return t;
+    public T getBody() {
+        return body;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResponseDto<?> that = (ResponseDto<?>) o;
+        ResponseWrapper<?> that = (ResponseWrapper<?>) o;
         return statusCode == that.statusCode &&
-                Objects.equals(t, that.t);
+                Objects.equals(body, that.body);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(statusCode, t);
+        return Objects.hash(statusCode, body);
     }
 
     @Override
     public String toString() {
         return "ResponseDto{" +
                 "statusCode=" + statusCode +
-                ", t=" + t +
+                ", t=" + body +
                 '}';
     }
 }

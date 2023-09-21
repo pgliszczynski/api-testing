@@ -6,7 +6,7 @@ import io.restassured.specification.ResponseSpecification;
 import model.client.HttpClient;
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import utility.config.BoardConfig;
 import restassured.mapper.ResponseMapper;
 import restassured.request.RequestBuilder;
@@ -22,7 +22,7 @@ public class RestAssuredClient implements HttpClient {
     private RequestSender requestSender;
 
     @Override
-    public ResponseDto<User> getUserRequest() {
+    public ResponseWrapper<User> getUserRequest() {
         createUserRequest();
         createRequestSender();
 
@@ -33,7 +33,7 @@ public class RestAssuredClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> postNewBoard() {
+    public ResponseWrapper<Board> postNewBoard() {
         createBoardPostRequest();
         createRequestSender();
 
@@ -44,7 +44,7 @@ public class RestAssuredClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> getBoardById(String boardId) {
+    public ResponseWrapper<Board> getBoardById(String boardId) {
         createBoardGetByIdRequest(boardId);
         createRequestSender();
 
@@ -55,7 +55,7 @@ public class RestAssuredClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> updateBoard(String boardId) {
+    public ResponseWrapper<Board> updateBoard(String boardId) {
         createBoardPutRequest(boardId);
         createRequestSender();
 
@@ -66,7 +66,7 @@ public class RestAssuredClient implements HttpClient {
     }
 
     @Override
-    public ResponseDto<Board> deleteBoard(String boardId) {
+    public ResponseWrapper<Board> deleteBoard(String boardId) {
         createBoardDeleteRequest();
         createRequestSender();
 

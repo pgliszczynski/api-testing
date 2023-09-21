@@ -2,7 +2,7 @@ package apache.client;
 
 import model.domain.Board;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import utility.config.BoardConfig;
 import model.client.HttpClient;
@@ -15,31 +15,31 @@ public class ApacheClient implements HttpClient {
     private RequestSender requestSender;
 
     @Override
-    public ResponseDto<User> getUserRequest() {
+    public ResponseWrapper<User> getUserRequest() {
         createUserGetRequest();
         return requestSender.sendUserRequest();
     }
 
     @Override
-    public ResponseDto<Board> postNewBoard() {
+    public ResponseWrapper<Board> postNewBoard() {
         createBoardPostRequest();
         return requestSender.sendBoardRequest();
     }
 
     @Override
-    public ResponseDto<Board> getBoardById(String boardId) {
+    public ResponseWrapper<Board> getBoardById(String boardId) {
         createBoardGetRequest(boardId);
         return requestSender.sendBoardRequest();
     }
 
     @Override
-    public ResponseDto<Board> updateBoard(String boardId) {
+    public ResponseWrapper<Board> updateBoard(String boardId) {
         createBoardPutRequest(boardId);
         return requestSender.sendBoardRequest();
     }
 
     @Override
-    public ResponseDto<Board> deleteBoard(String boardId) {
+    public ResponseWrapper<Board> deleteBoard(String boardId) {
         createBoardDeleteRequest(boardId);
         return requestSender.sendBoardRequest();
     }

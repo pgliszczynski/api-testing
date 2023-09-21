@@ -2,7 +2,7 @@ package apache.response.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.domain.User;
-import model.response.ResponseDto;
+import model.wrapper.ResponseWrapper;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpException;
@@ -11,11 +11,11 @@ import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import java.io.IOException;
 import java.util.Optional;
 
-public class UserResponseHandler implements HttpClientResponseHandler<ResponseDto<User>> {
+public class UserResponseHandler implements HttpClientResponseHandler<ResponseWrapper<User>> {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public ResponseDto<User> handleResponse(ClassicHttpResponse classicHttpResponse)
+    public ResponseWrapper<User> handleResponse(ClassicHttpResponse classicHttpResponse)
             throws HttpException, IOException {
         int responseCode = classicHttpResponse.getCode();
 
@@ -25,6 +25,6 @@ public class UserResponseHandler implements HttpClientResponseHandler<ResponseDt
             user = objectMapper.readValue(entity.get().getContent(), User.class);
         }
 
-        return new ResponseDto<>(responseCode, user);
+        return new ResponseWrapper<>(responseCode, user);
     }
 }
