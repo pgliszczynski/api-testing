@@ -1,125 +1,85 @@
 package restassured.client;
 
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import model.client.HttpClient;
 import model.domain.Board;
 import model.domain.User;
+import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
-import utility.config.BoardConfig;
-import restassured.mapper.ResponseMapper;
 import restassured.request.RequestBuilder;
+import restassured.mapper.ResponseMapper;
 import restassured.request.RequestSender;
 import restassured.response.ResponseBuilder;
 import restassured.response.validator.ResponseValidator;
-
-import static io.restassured.RestAssured.given;
+import utility.config.BoardConfig;
 
 public class RestAssuredClient implements HttpClient {
-    private static RequestSpecification request;
-    private static ResponseSpecification response;
-    private RequestSender requestSender;
+    private final RequestBuilder requestBuilder;
+    private final RequestSender requestSender;
+    private final ResponseBuilder responseBuilder;
+
+    public RestAssuredClient(RequestWrapper requestWrapper) {
+        this.requestBuilder = new RequestBuilder(requestWrapper);
+        this.requestSender = new RequestSender();
+        this.responseBuilder = new ResponseBuilder();
+    }
 
     @Override
     public ResponseWrapper<User> getUserRequest() {
-        createUserRequest();
-        createRequestSender();
+        ResponseSpecification expectedResponse = responseBuilder.buildUserResponse();
+        Response actualResponse = requestSender.sendGetRequest(
+                requestBuilder.createUserRequest());
 
-        Response actualResponse = requestSender.sendGetRequest();
-
-        ResponseValidator.verifyResponse(actualResponse, response);
+        ResponseValidator.verifyResponse(actualResponse, expectedResponse);
         return ResponseMapper.mapToUserResponse(actualResponse);
     }
 
     @Override
     public ResponseWrapper<Board> postNewBoard() {
-        createBoardPostRequest();
-        createRequestSender();
+        ResponseSpecification expectedResponse = responseBuilder.buildBoardResponse(
+                BoardConfig.getCreatedBoardName());
+        Response actualResponse = requestSender.sendPostRequest(
+                requestBuilder.createBoardRequest());
 
-        Response actualResponse = requestSender.sendPostRequest();
-
-        ResponseValidator.verifyResponse(actualResponse, response);
+        ResponseValidator.verifyResponse(actualResponse, expectedResponse);
         return ResponseMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
     public ResponseWrapper<Board> getBoardById(String boardId) {
-        createBoardGetByIdRequest(boardId);
-        createRequestSender();
+        ResponseSpecification expectedResponse = responseBuilder.buildBoardResponseWithId(
+                boardId,
+                BoardConfig.getCreatedBoardName());
+        Response actualResponse = requestSender.sendGetByIdRequest(
+                boardId,
+                requestBuilder.createBoardRequest());
 
-        Response actualResponse = requestSender.sendGetByIdRequest(boardId);
-
-        ResponseValidator.verifyResponse(actualResponse, response);
+        ResponseValidator.verifyResponse(actualResponse, expectedResponse);
         return ResponseMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
     public ResponseWrapper<Board> updateBoard(String boardId) {
-        createBoardPutRequest(boardId);
-        createRequestSender();
+        ResponseSpecification expectedResponse = responseBuilder.buildBoardResponseWithId(
+                boardId,
+                BoardConfig.getUpdatedBoardName());
+        Response actualResponse = requestSender.sendPutRequest(
+                boardId,
+                requestBuilder.createBoardRequest());
 
-        Response actualResponse = requestSender.sendPutRequest(boardId);
-
-        ResponseValidator.verifyResponse(actualResponse, response);
+        ResponseValidator.verifyResponse(actualResponse, expectedResponse);
         return ResponseMapper.mapToBoardResponse(actualResponse);
     }
 
     @Override
     public ResponseWrapper<Board> deleteBoard(String boardId) {
-        createBoardDeleteRequest();
-        createRequestSender();
+        ResponseSpecification expectedResponse = responseBuilder.buildEmptyResponse();
+        Response actualResponse = requestSender.sendDeleteRequest(
+                boardId,
+                requestBuilder.createBoardRequest());
 
-        Response actualResponse = requestSender.sendDeleteRequest(boardId);
-
-        ResponseValidator.verifyResponse(actualResponse, response);
+        ResponseValidator.verifyResponse(actualResponse, expectedResponse);
         return ResponseMapper.mapToBoardResponse(actualResponse);
-    }
-
-    private void createUserRequest() {
-        RequestSpecification requestSpecification = RequestBuilder.buildUserRequest();
-        updateRequest(requestSpecification);
-        response = ResponseBuilder.buildUserResponse();
-    }
-
-    private void createBoardPostRequest() {
-        RequestSpecification requestSpecification = RequestBuilder.buildBoardWithNameRequest(
-                BoardConfig.getCreatedBoardName()
-        );
-        updateRequest(requestSpecification);
-        response = ResponseBuilder.buildBoardResponse();
-    }
-
-    private void createBoardGetByIdRequest(String boardId) {
-        RequestSpecification requestSpecification = RequestBuilder.buildBoardRequest();
-        updateRequest(requestSpecification);
-        response = ResponseBuilder.buildBoardResponseWithId(
-                boardId,
-                BoardConfig.getCreatedBoardName());
-    }
-
-    private void createBoardPutRequest(String boardId) {
-        RequestSpecification requestSpecification = RequestBuilder.buildBoardWithNameRequest(
-                BoardConfig.getUpdatedBoardName()
-        );
-        updateRequest(requestSpecification);
-        response = ResponseBuilder.buildBoardResponseWithId(
-                boardId,
-                BoardConfig.getUpdatedBoardName());
-    }
-
-
-    private void createBoardDeleteRequest() {
-        RequestSpecification requestSpecification = RequestBuilder.buildBoardRequest();
-        updateRequest(requestSpecification);
-        response = ResponseBuilder.buildEmptyResponse();
-    }
-
-    private void createRequestSender() {
-        requestSender = new RequestSender(request);
-    }
-
-    private void updateRequest(RequestSpecification requestSpecification) {
-        request = given().spec(requestSpecification);
     }
 }

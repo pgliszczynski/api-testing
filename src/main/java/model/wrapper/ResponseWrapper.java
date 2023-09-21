@@ -1,7 +1,5 @@
 package model.wrapper;
 
-import utility.authorization.AuthorizationUtility;
-
 import java.util.Objects;
 
 public class ResponseWrapper<T> {

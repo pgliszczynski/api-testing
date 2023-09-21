@@ -8,16 +8,16 @@ import model.wrapper.ResponseWrapper;
 public class ResponseMapper {
 
     public static ResponseWrapper<User> mapToUserResponse(Response response) {
-        return new ResponseWrapper<>(
-                response.statusCode(),
-                response.as(User.class)
-        );
+        return new ResponseWrapper.Builder<User>()
+                .statusCode(response.getStatusCode())
+                .body(response.as(User.class))
+                .build();
     }
 
     public static ResponseWrapper<Board> mapToBoardResponse(Response response) {
-        return new ResponseWrapper<>(
-                response.statusCode(),
-                response.as(Board.class)
-        );
+        return new ResponseWrapper.Builder<Board>()
+                .statusCode(response.getStatusCode())
+                .body(response.as(Board.class))
+                .build();
     }
 }

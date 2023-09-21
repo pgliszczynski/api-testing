@@ -1,13 +1,20 @@
 package restassured.board.get;
 
+import model.creators.RequestCreator;
+import model.creators.ResponseCreator;
+import model.domain.Board;
+import model.test.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import restassured.test.RestAssuredClientTests;
+import restassured.client.RestAssuredClient;
+import utility.config.BoardConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class GetBoardTests extends RestAssuredClientTests {
+public class GetBoardTests extends BaseTest<Board> {
 
     @Test(groups="getterRest", dependsOnGroups="creationRest")
     void shouldGetBoardById() {
@@ -16,15 +23,27 @@ public class GetBoardTests extends RestAssuredClientTests {
         //When
 
         //Then
-        assertTrue(boardResponseValidator.isExpectedResponse());
-        assertThat(boardResponseValidator.isExpectedResponse())
+        assertTrue(validator.isExpectedResponse());
+        assertThat(validator.isExpectedResponse())
                 .isTrue();
     }
 
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualBoardResponse = httpClient.getBoardById(getExpectedBoardId());
-        createBoardValidator();
+        actualResponse = httpClient.getBoardById(id);
+        createValidator();
+    }
+
+    @BeforeSuite
+    @Override
+    public void createHttpClient() {
+        httpClient = new RestAssuredClient(RequestCreator.getRequestWithId(id));
+    }
+
+    @BeforeClass
+    @Override
+    public void createUserValue() {
+        expectedResponse = ResponseCreator.getBoardResponse();
     }
 }

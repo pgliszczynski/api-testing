@@ -5,8 +5,6 @@ import model.creators.RequestCreator;
 import model.creators.ResponseCreator;
 import model.domain.User;
 import model.test.BaseTest;
-import model.test.validation.ResponseValidator;
-import model.wrapper.ResponseWrapper;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;

@@ -4,29 +4,24 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RequestSender {
-    private final RequestSpecification requestSpecification;
 
-    public RequestSender(RequestSpecification requestSpecification) {
-        this.requestSpecification = requestSpecification;
-    }
-
-    public Response sendGetRequest() {
+    public Response sendGetRequest(RequestSpecification requestSpecification) {
         return requestSpecification.when().get();
     }
 
-    public Response sendPostRequest() {
+    public Response sendPostRequest(RequestSpecification requestSpecification) {
         return requestSpecification.when().post();
     }
 
-    public Response sendGetByIdRequest(String boardId) {
+    public Response sendGetByIdRequest(String boardId, RequestSpecification requestSpecification) {
         return requestSpecification.when().get("/" + boardId);
     }
 
-    public Response sendPutRequest(String boardId) {
+    public Response sendPutRequest(String boardId, RequestSpecification requestSpecification) {
         return requestSpecification.when().put("/" + boardId);
     }
 
-    public Response sendDeleteRequest(String boardId) {
+    public Response sendDeleteRequest(String boardId, RequestSpecification requestSpecification) {
         return requestSpecification.when().delete("/" + boardId);
     }
 }

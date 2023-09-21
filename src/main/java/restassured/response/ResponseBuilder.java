@@ -4,14 +4,13 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.ResponseSpecification;
-import utility.config.BoardConfig;
 import utility.config.UserConfig;
 
 import static org.hamcrest.Matchers.equalTo;
 
 public class ResponseBuilder {
 
-    public static ResponseSpecification buildUserResponse() {
+    public ResponseSpecification buildUserResponse() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
@@ -23,16 +22,16 @@ public class ResponseBuilder {
                 .build();
     }
 
-    public static ResponseSpecification buildBoardResponse() {
+    public ResponseSpecification buildBoardResponse(String name) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
-                .expectBody("name", equalTo(BoardConfig.getCreatedBoardName()))
+                .expectBody("name", equalTo(name))
                 .log(LogDetail.ALL)
                 .build();
     }
 
-    public static ResponseSpecification buildBoardResponseWithId(String boardId, String name) {
+    public ResponseSpecification buildBoardResponseWithId(String boardId, String name) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
@@ -42,7 +41,7 @@ public class ResponseBuilder {
                 .build();
     }
 
-    public static ResponseSpecification buildEmptyResponse() {
+    public ResponseSpecification buildEmptyResponse() {
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
