@@ -1,20 +1,27 @@
 package model.test;
 
+import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import model.test.validation.ResponseValidator;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import model.client.HttpClient;
 
 import org.testng.annotations.BeforeClass;
 
-public abstract class BaseTest {
+public abstract class BaseTest<T> {
     protected static HttpClient httpClient;
 
     protected RequestWrapper request;
-    protected ResponseWrapper<?> expectedResponse;
-    protected ResponseWrapper<?> actualResponse;
-    protected ResponseValidator<?> validator;
+    protected ResponseWrapper<T> expectedResponse;
+    protected ResponseWrapper<T> actualResponse;
+    protected ResponseValidator<T> validator;
+
+    protected static String id;
+
+    @BeforeMethod
+    public abstract void sendRequest();
 
     @BeforeSuite
     public abstract void createHttpClient();
@@ -22,6 +29,7 @@ public abstract class BaseTest {
     @BeforeClass
     public abstract void createUserValue();
 
-    @BeforeClass
-    public abstract void createValidator();
+    public void createValidator() {
+        validator = new ResponseValidator<>(expectedResponse, actualResponse);
+    }
 }

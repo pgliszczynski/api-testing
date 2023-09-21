@@ -1,13 +1,21 @@
 package apache.authorize.user;
 
+import apache.client.ApacheClient;
+import model.creators.RequestCreator;
+import model.creators.ResponseCreator;
+import model.domain.User;
+import model.test.BaseTest;
+import model.test.validation.ResponseValidator;
+import model.wrapper.ResponseWrapper;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import apache.test.ApacheClientTest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class AuthorizeUserTests extends ApacheClientTest {
+public class AuthorizeUserTests extends BaseTest<User> {
 
     @Test(groups="authentication")
     void shouldAuthorizeAndReturnUserTestNG() {
@@ -16,24 +24,27 @@ public class AuthorizeUserTests extends ApacheClientTest {
         //When
 
         //Then
-        assertTrue(userResponseValidator.isExpectedResponse());
-    }
-
-    @Test(groups="authentication")
-    void shouldAuthorizeAndReturnUserAssertJ() {
-        //Given
-
-        //When
-
-        //Then
-        assertThat(userResponseValidator.isExpectedResponse())
+        assertTrue(validator.isExpectedResponse());
+        assertThat(validator.isExpectedResponse())
                 .isTrue();
     }
 
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualUserResponse = httpClient.getUserRequest();
-        createUserValidator();
+        actualResponse = httpClient.getUserRequest();
+        createValidator();
+    }
+
+    @BeforeSuite
+    @Override
+    public void createHttpClient() {
+        httpClient = new ApacheClient(RequestCreator.getBasicRequest());
+    }
+
+    @BeforeClass
+    @Override
+    public void createUserValue() {
+        expectedResponse = ResponseCreator.getUserResponse();
     }
 }

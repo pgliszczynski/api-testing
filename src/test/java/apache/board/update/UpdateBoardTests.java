@@ -1,13 +1,20 @@
 package apache.board.update;
 
+import apache.client.ApacheClient;
+import model.creators.RequestCreator;
+import model.creators.ResponseCreator;
+import model.domain.Board;
+import model.test.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import apache.test.ApacheClientTest;
+import utility.config.BoardConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class UpdateBoardTests extends ApacheClientTest {
+public class UpdateBoardTests extends BaseTest<Board> {
 
     @Test(groups="update", dependsOnGroups="getter")
     void shouldUpdateBoardTestNg() {
@@ -16,25 +23,26 @@ public class UpdateBoardTests extends ApacheClientTest {
         //When
 
         //Then
-        assertTrue(boardResponseValidator.isExpectedResponse());
-    }
-
-    @Test(groups="update", dependsOnGroups="getter")
-    void shouldUpdateBoardAssertJ() {
-        //Given
-
-        //When
-
-        //Then
-        assertThat(boardResponseValidator.isExpectedResponse())
-                .isTrue();
+        assertTrue(validator.isExpectedResponse());
     }
 
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualBoardResponse = httpClient.updateBoard(getExpectedBoardId());
-        updateExpectedBoardName();
-        createBoardValidator();
+        actualResponse = httpClient.updateBoard(id);
+        createValidator();
+    }
+
+    @BeforeSuite
+    @Override
+    public void createHttpClient() {
+        httpClient = new ApacheClient(RequestCreator
+                .getRequestWithIdAndName(id, BoardConfig.getUpdatedBoardName()));
+    }
+
+    @BeforeClass
+    @Override
+    public void createUserValue() {
+        expectedResponse = ResponseCreator.getUpdatedBoardResponse();
     }
 }

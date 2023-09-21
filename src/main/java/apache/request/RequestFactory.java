@@ -1,25 +1,51 @@
 package apache.request;
 
+import apache.parameters.ParametersMapper;
+import apache.request.uri.UriBuilder;
+import model.client.methods.HttpMethod;
+import model.wrapper.RequestWrapper;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.classic.methods.HttpPut;
 import org.apache.hc.core5.http.ClassicHttpRequest;
-import model.client.methods.HttpMethod;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.net.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 
 public class RequestFactory {
+    public static ClassicHttpRequest createRequest(HttpMethod httpMethod, RequestWrapper requestWrapper, String url) {
+        ClassicHttpRequest httpRequest;
 
-    public static ClassicHttpRequest createRequest(HttpMethod httpMethod, String url) {
-        switch (httpMethod) {
+        switch(httpMethod) {
             case GET:
-                return new HttpGet(url);
-            case PUT:
-                return new HttpPut(url);
+                httpRequest = new HttpGet(url);
+                break;
             case POST:
-                return new HttpPost(url);
+                httpRequest = new HttpPost(url);
+                break;
+            case PUT:
+                httpRequest = new HttpPut(url);
+                break;
             case DELETE:
-                return new HttpDelete(url);
+                httpRequest = new HttpDelete(url);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + httpMethod);
         }
-        return null;
+
+        return buildParams(httpRequest, requestWrapper);
+    }
+
+    private static ClassicHttpRequest buildParams(ClassicHttpRequest httpRequest, RequestWrapper requestWrapper) {
+        httpRequest.setUri(
+                UriBuilder.buildUri(httpRequest, requestWrapper)
+        );
+        return httpRequest;
     }
 }

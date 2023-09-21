@@ -17,14 +17,14 @@ public class RequestCreator {
                 .build();
     }
 
-    public static RequestWrapper getRequestWithId(int id) {
+    public static RequestWrapper getRequestWithId(String id) {
         return new RequestWrapper.Builder()
                 .id(id)
                 .addAuthorization()
                 .build();
     }
 
-    public static RequestWrapper getRequestWithIdAndName(int id, String name) {
+    public static RequestWrapper getRequestWithIdAndName(String id, String name) {
         return new RequestWrapper.Builder()
                 .id(id)
                 .addParameter("name", name)

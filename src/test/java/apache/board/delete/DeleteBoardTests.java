@@ -1,13 +1,19 @@
 package apache.board.delete;
 
+import apache.client.ApacheClient;
+import model.creators.RequestCreator;
+import model.creators.ResponseCreator;
+import model.domain.Board;
+import model.test.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import apache.test.ApacheClientTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class DeleteBoardTests extends ApacheClientTest {
+public class DeleteBoardTests extends BaseTest<Board> {
 
     @Test(groups="delete", dependsOnGroups="update")
     void shouldDeleteBoardTestNg() {
@@ -16,15 +22,27 @@ public class DeleteBoardTests extends ApacheClientTest {
         //When
 
         //Then
-        assertTrue(boardResponseValidator.isExpectedResponseWithNoBody());
-        assertThat(boardResponseValidator.isExpectedResponseWithNoBody())
+        assertTrue(validator.isExpectedResponseWithNoBody());
+        assertThat(validator.isExpectedResponseWithNoBody())
                 .isTrue();
     }
 
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualBoardResponse = httpClient.deleteBoard(getExpectedBoardId());
-        createBoardValidator();
+        actualResponse = httpClient.deleteBoard(id);
+        createValidator();
+    }
+
+    @BeforeSuite
+    @Override
+    public void createHttpClient() {
+        httpClient = new ApacheClient(RequestCreator.getRequestWithId(id));
+    }
+
+    @BeforeClass
+    @Override
+    public void createUserValue() {
+        expectedResponse = ResponseCreator.getBoardResponse();
     }
 }

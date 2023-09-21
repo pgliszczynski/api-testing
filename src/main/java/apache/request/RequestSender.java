@@ -14,34 +14,22 @@ import apache.response.handler.UserResponseHandler;
 import java.io.IOException;
 
 public class RequestSender {
-    private final ClassicHttpRequest request;
-
     private final static Logger LOGGER = LoggerFactory.getLogger("Request Sender Logger");
 
-    public RequestSender(ClassicHttpRequest request) {
-        this.request = request;
-    }
-
-    public ResponseWrapper<User> sendUserRequest() {
+    public ResponseWrapper<User> sendUserRequest(ClassicHttpRequest request) {
         ResponseWrapper<User> response = null;
-        LOGGER.info("Trying to send request");
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            LOGGER.info("Sending request");
             response = httpClient.execute(request, new UserResponseHandler());
-            LOGGER.info("Request successfully sent");
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
         return response;
     }
 
-    public ResponseWrapper<Board> sendBoardRequest() {
+    public ResponseWrapper<Board> sendBoardRequest(ClassicHttpRequest request) {
         ResponseWrapper<Board> response = null;
-        LOGGER.info("Trying to send request");
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            LOGGER.info("Sending request");
             response = httpClient.execute(request, new BoardResponseHandler());
-            LOGGER.info("Request successfully sent");
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
