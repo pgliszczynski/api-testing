@@ -2,12 +2,12 @@ package restassured.board.update;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.RestAssuredHttpClientTests;
+import restassured.test.RestAssuredClientTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class UpdateBoardTests extends RestAssuredHttpClientTests {
+public class UpdateBoardTests extends RestAssuredClientTests {
 
     @Test(groups="updateRest", dependsOnGroups="getterRest")
     void shouldUpdateBoard() {

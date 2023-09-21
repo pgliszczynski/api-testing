@@ -2,12 +2,12 @@ package restassured.authorize.user;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.RestAssuredHttpClientTests;
+import restassured.test.RestAssuredClientTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class AuthorizeUserTests extends RestAssuredHttpClientTests {
+public class AuthorizeUserTests extends RestAssuredClientTests {
 
     @Test(groups="authenticationRest", dependsOnGroups="delete")
     void shouldAuthorizeUser() {

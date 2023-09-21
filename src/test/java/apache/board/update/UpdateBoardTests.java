@@ -2,12 +2,12 @@ package apache.board.update;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.ApacheHttpClientTest;
+import apache.test.ApacheClientTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class UpdateBoardTests extends ApacheHttpClientTest {
+public class UpdateBoardTests extends ApacheClientTest {
 
     @Test(groups="update", dependsOnGroups="getter")
     void shouldUpdateBoardTestNg() {

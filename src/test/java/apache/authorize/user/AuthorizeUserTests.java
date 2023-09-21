@@ -2,12 +2,12 @@ package apache.authorize.user;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.ApacheHttpClientTest;
+import apache.test.ApacheClientTest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class AuthorizeUserTests extends ApacheHttpClientTest {
+public class AuthorizeUserTests extends ApacheClientTest {
 
     @Test(groups="authentication")
     void shouldAuthorizeAndReturnUserTestNG() {

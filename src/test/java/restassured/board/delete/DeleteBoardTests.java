@@ -2,12 +2,12 @@ package restassured.board.delete;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.RestAssuredHttpClientTests;
+import restassured.test.RestAssuredClientTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class DeleteBoardTests extends RestAssuredHttpClientTests {
+public class DeleteBoardTests extends RestAssuredClientTests {
 
     @Test(groups="deleteRest", dependsOnGroups="updateRest")
     void shouldDeleteBoard() {

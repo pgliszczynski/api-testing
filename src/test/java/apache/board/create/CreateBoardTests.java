@@ -2,12 +2,12 @@ package apache.board.create;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import tests.ApacheHttpClientTest;
+import apache.test.ApacheClientTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class CreateBoardTests extends ApacheHttpClientTest {
+public class CreateBoardTests extends ApacheClientTest {
 
     @Test(groups="creation", dependsOnGroups="authentication")
     void shouldCreateNewBoardTestNG() {
