@@ -28,4 +28,8 @@ public class RequestBuilder {
     public Call<Board> getBoardByIdRequest(String boardId) {
         return trelloService.getBoardById(boardId, queryParameters);
     }
+
+    public Call<Board> updateBoardRequest(String boardId) {
+        return trelloService.updateBoard(boardId, queryParameters);
+    }
 }
