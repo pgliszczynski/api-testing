@@ -17,11 +17,15 @@ public class RequestBuilder {
         this.queryParameters = queryParameters;
     }
 
-    public Call<User> userRequest() {
+    public Call<User> getUserRequest() {
         return trelloService.authorizeUser(queryParameters);
     }
 
-    public Call<Board> boardRequest() {
+    public Call<Board> createBoardRequest() {
         return trelloService.createBoard(queryParameters);
+    }
+
+    public Call<Board> getBoardByIdRequest(String boardId) {
+        return trelloService.getBoardById(boardId, queryParameters);
     }
 }

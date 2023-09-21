@@ -65,7 +65,11 @@ public class RetrofitClient implements HttpClient {
 
     @Override
     public ResponseDto<Board> getBoardById(String boardId) {
-        return null;
+        createAuthorizationParameters();
+
+        createRequestBuilder();
+        Call<Board> request = createGetBoardByIdRequest(boardId);
+        return sendBoardRequest(request);
     }
 
     @Override
@@ -103,12 +107,18 @@ public class RetrofitClient implements HttpClient {
 
     private Call<User> createUserRequest() {
         LOGGER.info("Create request for getting user");
-        return retrofitRequestBuilder.userRequest();
+        return retrofitRequestBuilder.getUserRequest();
     }
 
     private Call<Board> createBoardRequest() {
         LOGGER.info("Create request for creating board");
-        return retrofitRequestBuilder.boardRequest();
+        return retrofitRequestBuilder.createBoardRequest();
+    }
+
+
+    private Call<Board> createGetBoardByIdRequest(String boardId) {
+        LOGGER.info("Create request for getting board by Id");
+        return retrofitRequestBuilder.getBoardByIdRequest(boardId);
     }
 
     private ResponseDto<User> sendUserRequest(Call<User> request) {
