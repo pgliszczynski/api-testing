@@ -8,7 +8,7 @@ import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import restassured.request.RequestBuilder;
-import restassured.mapper.ResponseMapper;
+import restassured.response.ResponseMapper;
 import restassured.request.RequestSender;
 import restassured.response.ResponseBuilder;
 import restassured.response.validator.ResponseValidator;

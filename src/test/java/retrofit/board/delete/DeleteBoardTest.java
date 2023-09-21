@@ -1,13 +1,19 @@
 package retrofit.board.delete;
 
+import model.creators.RequestCreator;
+import model.creators.ResponseCreator;
+import model.domain.Board;
+import model.test.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import retrofit.test.RetrofitClientTest;
+import retrofit.client.RetrofitClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
-public class DeleteBoardTest extends RetrofitClientTest {
+public class DeleteBoardTest extends BaseTest<Board> {
 
     @Test(groups="deleteRetro", dependsOnGroups="updateRetro")
     void shouldDeleteBoard() {
@@ -16,15 +22,27 @@ public class DeleteBoardTest extends RetrofitClientTest {
         //When
 
         //Then
-        assertTrue(boardResponseValidator.isExpectedResponseWithNoBody());
-        assertThat(boardResponseValidator.isExpectedResponseWithNoBody())
+        assertTrue(validator.isExpectedResponseWithNoBody());
+        assertThat(validator.isExpectedResponseWithNoBody())
                 .isTrue();
     }
 
     @BeforeMethod
     @Override
     public void sendRequest() {
-        actualBoardResponse = httpClient.deleteBoard(getExpectedBoardId());
-        createBoardValidator();
+        actualResponse = httpClient.updateBoard(id);
+        createValidator();
+    }
+
+    @BeforeSuite
+    @Override
+    public void createHttpClient() {
+        httpClient = new RetrofitClient(RequestCreator.getRequestWithId(id));
+    }
+
+    @BeforeClass
+    @Override
+    public void createUserValue() {
+        expectedResponse = ResponseCreator.getBoardResponse();
     }
 }

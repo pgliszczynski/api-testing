@@ -1,4 +1,4 @@
-package restassured.mapper;
+package restassured.response;
 
 import io.restassured.response.Response;
 import model.domain.Board;

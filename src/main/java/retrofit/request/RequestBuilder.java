@@ -2,38 +2,42 @@ package retrofit.request;
 
 import model.domain.Board;
 import model.domain.User;
+import model.wrapper.RequestWrapper;
+import retrofit.client.service.TrelloServiceBuilder;
 import retrofit2.Call;
 import retrofit.client.service.TrelloService;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import utility.url.UrlUtility;
 
 import java.util.Map;
 
 public class RequestBuilder {
+    private final RequestWrapper requestWrapper;
     private final TrelloService trelloService;
-    private final Map<String, String> queryParameters;
 
-    public RequestBuilder(TrelloService trelloService,
-                          Map<String, String> queryParameters) {
-        this.trelloService = trelloService;
-        this.queryParameters = queryParameters;
+    public RequestBuilder(RequestWrapper requestWrapper) {
+        this.requestWrapper = requestWrapper;
+        this.trelloService = TrelloServiceBuilder.buildTrelloService();
     }
 
     public Call<User> getUserRequest() {
-        return trelloService.authorizeUser(queryParameters);
+        return trelloService.authorizeUser(requestWrapper.getQueryParameters());
     }
 
     public Call<Board> createBoardRequest() {
-        return trelloService.createBoard(queryParameters);
+        return trelloService.createBoard(requestWrapper.getQueryParameters());
     }
 
     public Call<Board> getBoardByIdRequest(String boardId) {
-        return trelloService.getBoardById(boardId, queryParameters);
+        return trelloService.getBoardById(boardId, requestWrapper.getQueryParameters());
     }
 
     public Call<Board> updateBoardRequest(String boardId) {
-        return trelloService.updateBoard(boardId, queryParameters);
+        return trelloService.updateBoard(boardId, requestWrapper.getQueryParameters());
     }
 
     public Call<Board> deleteBoardRequest(String boardId) {
-        return trelloService.deleteBoard(boardId, queryParameters);
+        return trelloService.deleteBoard(boardId, requestWrapper.getQueryParameters());
     }
 }
