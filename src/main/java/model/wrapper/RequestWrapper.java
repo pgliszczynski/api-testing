@@ -2,18 +2,19 @@ package model.wrapper;
 
 import utility.authorization.AuthorizationUtility;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class RequestWrapper {
-    private final int id;
+    private final String id;
     private final Map<String, String> queryParameters;
 
     public static class Builder {
-        private int id;
-        private Map<String, String> queryParameters;
+        private String id;
+        private Map<String, String> queryParameters = new HashMap<>();
 
-        public Builder id(int id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
@@ -45,7 +46,7 @@ public class RequestWrapper {
         this.queryParameters = builder.queryParameters;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

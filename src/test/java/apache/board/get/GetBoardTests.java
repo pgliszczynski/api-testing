@@ -32,7 +32,7 @@ public class GetBoardTests extends BaseTest<Board> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new ApacheClient(RequestCreator.getRequestWithId(id));

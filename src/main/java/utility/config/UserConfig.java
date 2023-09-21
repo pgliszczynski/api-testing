@@ -2,7 +2,7 @@ package utility.config;
 
 public class UserConfig {
     private final static String ID = "65082a8cbb67cb72bede5f5b";
-    private final static String FULL_NAME = "gliszczynskip5";
+    private final static String FULL_NAME = "Piotr gliszczyński";
     private final static String USERNAME = "gliszczynskip5";
     private final static String EMAIL = "gliszczynskip5@gmail.com";
 

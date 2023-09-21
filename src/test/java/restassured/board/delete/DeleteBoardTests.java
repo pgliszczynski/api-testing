@@ -34,7 +34,7 @@ public class DeleteBoardTests extends BaseTest<Board> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new RestAssuredClient(RequestCreator

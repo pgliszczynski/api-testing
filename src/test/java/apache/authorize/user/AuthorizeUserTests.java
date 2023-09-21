@@ -34,7 +34,7 @@ public class AuthorizeUserTests extends BaseTest<User> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new ApacheClient(RequestCreator.getBasicRequest());

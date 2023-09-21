@@ -23,7 +23,7 @@ public abstract class BaseTest<T> {
     @BeforeMethod
     public abstract void sendRequest();
 
-    @BeforeSuite
+    @BeforeClass
     public abstract void createHttpClient();
 
     @BeforeClass

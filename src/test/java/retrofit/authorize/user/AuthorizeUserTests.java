@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import retrofit.client.RetrofitClient;
-import retrofit.test.RetrofitClientTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
@@ -35,7 +34,7 @@ public class AuthorizeUserTests extends BaseTest<User> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new RetrofitClient(RequestCreator.getBasicRequest());

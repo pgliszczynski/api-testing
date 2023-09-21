@@ -35,7 +35,7 @@ public class UpdateBoardTest extends BaseTest<Board> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new RetrofitClient(RequestCreator.getRequestWithIdAndName(

@@ -34,7 +34,7 @@ public class DeleteBoardTest extends BaseTest<Board> {
         createValidator();
     }
 
-    @BeforeSuite
+    @BeforeClass
     @Override
     public void createHttpClient() {
         httpClient = new RetrofitClient(RequestCreator.getRequestWithId(id));
