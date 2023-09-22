@@ -22,9 +22,9 @@ public class AuthorizeUserTests extends BaseTest<User> {
         //When
 
         //Then
-        assertTrue(validator.isExpectedResponse());
-        assertThat(validator.isExpectedResponse())
-                .isTrue();
+        validator.checkStatusCode();
+        validator.checkHasBody();
+        validator.checkResponse();
     }
 
     @BeforeMethod

@@ -1,11 +1,9 @@
 package model.test;
 
-import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import model.test.validation.ResponseValidator;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import model.client.HttpClient;
 
 import org.testng.annotations.BeforeClass;

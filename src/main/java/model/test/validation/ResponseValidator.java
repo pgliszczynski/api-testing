@@ -4,7 +4,8 @@ import model.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.testng.Assert.fail;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.Assert.*;
 
 public class ResponseValidator<T> {
     private final ResponseWrapper<T> expectedResponse;
@@ -17,25 +18,31 @@ public class ResponseValidator<T> {
         this.actualResponse = actualResponse;
     }
 
-    private void isValidResponse() {
+    public void checkStatusCode() {
+        LOGGER.info("Validating status code");
+        LOGGER.info("Expected status code: " + expectedResponse.getStatusCode());
+        LOGGER.info("Actual status code: " + actualResponse.getStatusCode());
+
+        assertEquals(actualResponse.getStatusCode(), expectedResponse.getStatusCode());
+        assertThat(actualResponse.getStatusCode())
+                .isEqualTo(expectedResponse.getStatusCode());
+    }
+
+    public void checkHasBody() {
+        LOGGER.info("Validating response body existence");
+
+        assertNotNull(actualResponse.getBody());
+        assertThat(actualResponse.getBody())
+                .isNotNull();
+    }
+
+    public void checkResponse() {
         LOGGER.info("Validating response");
-        if (actualResponse.getStatusCode() < 100
-        || actualResponse.getStatusCode() > 600
-        || actualResponse.getBody() == null) {
-            fail("Invalid response");
-        }
-    }
+        LOGGER.info("Expected response: " + expectedResponse.getBody());
+        LOGGER.info("Actual response: " + actualResponse.getBody());
 
-    public boolean isExpectedResponse() {
-        LOGGER.info("Comparing expected and actual response");
-        isValidResponse();
-        LOGGER.info("Actual Response: " + actualResponse.toString());
-        LOGGER.info("Expected Response: " + expectedResponse.toString());
-        return expectedResponse.equals(actualResponse);
-    }
-
-    public boolean isExpectedResponseWithNoBody() {
-        LOGGER.info("Checking response with no body (only response status code");
-        return actualResponse.getStatusCode() == 200;
+        assertEquals(actualResponse.getBody(), expectedResponse.getBody());
+        assertThat(actualResponse.getBody())
+                .isEqualTo(expectedResponse.getBody());
     }
 }

@@ -7,11 +7,8 @@ import model.domain.User;
 import model.test.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.testng.Assert.assertTrue;
 
 public class AuthorizeUserTests extends BaseTest<User> {
 
@@ -22,9 +19,9 @@ public class AuthorizeUserTests extends BaseTest<User> {
         //When
 
         //Then
-        assertTrue(validator.isExpectedResponse());
-        assertThat(validator.isExpectedResponse())
-                .isTrue();
+        validator.checkStatusCode();
+        validator.checkHasBody();
+        validator.checkResponse();
     }
 
     @BeforeMethod

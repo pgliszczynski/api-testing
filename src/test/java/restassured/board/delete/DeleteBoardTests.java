@@ -22,9 +22,7 @@ public class DeleteBoardTests extends BaseTest<Board> {
         //When
 
         //Then
-        assertTrue(validator.isExpectedResponseWithNoBody());
-        assertThat(validator.isExpectedResponseWithNoBody())
-                .isTrue();
+        validator.checkStatusCode();
     }
 
     @BeforeMethod

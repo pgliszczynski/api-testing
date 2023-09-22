@@ -7,11 +7,7 @@ import model.domain.Board;
 import model.test.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertTrue;
 
 public class DeleteBoardTests extends BaseTest<Board> {
 
@@ -22,9 +18,7 @@ public class DeleteBoardTests extends BaseTest<Board> {
         //When
 
         //Then
-        assertTrue(validator.isExpectedResponseWithNoBody());
-        assertThat(validator.isExpectedResponseWithNoBody())
-                .isTrue();
+        validator.checkStatusCode();
     }
 
     @BeforeMethod

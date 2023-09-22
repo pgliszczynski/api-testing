@@ -21,7 +21,9 @@ public class GetBoardTests extends BaseTest<Board> {
         //When
 
         //Then
-        assertTrue(validator.isExpectedResponse());
+        validator.checkStatusCode();
+        validator.checkHasBody();
+        validator.checkResponse();
     }
 
 
