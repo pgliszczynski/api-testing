@@ -1,12 +1,11 @@
 package model.test;
 
+import model.client.HttpClient;
+import model.test.validation.ResponseValidator;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
-import model.test.validation.ResponseValidator;
-import org.testng.annotations.BeforeMethod;
-import model.client.HttpClient;
-
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public abstract class BaseTest<T> {
     protected static HttpClient httpClient;

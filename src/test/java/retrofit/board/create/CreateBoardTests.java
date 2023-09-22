@@ -6,13 +6,9 @@ import model.domain.Board;
 import model.test.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import retrofit.client.RetrofitClient;
 import utility.config.BoardConfig;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertTrue;
 
 public class CreateBoardTests extends BaseTest<Board> {
 

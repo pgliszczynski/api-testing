@@ -5,9 +5,9 @@ import model.domain.Board;
 import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
+import retrofit.request.RequestBuilder;
 import retrofit.request.RequestSender;
 import retrofit2.Call;
-import retrofit.request.RequestBuilder;
 
 public class RetrofitClient implements HttpClient {
 

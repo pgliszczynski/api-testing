@@ -3,14 +3,9 @@ package retrofit.request;
 import model.domain.Board;
 import model.domain.User;
 import model.wrapper.RequestWrapper;
+import retrofit.client.service.TrelloService;
 import retrofit.client.service.TrelloServiceBuilder;
 import retrofit2.Call;
-import retrofit.client.service.TrelloService;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
-import utility.url.UrlUtility;
-
-import java.util.Map;
 
 public class RequestBuilder {
     private final RequestWrapper requestWrapper;

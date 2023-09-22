@@ -1,13 +1,13 @@
 package apache.client;
 
+import apache.request.RequestBuilder;
+import apache.request.RequestSender;
+import model.client.HttpClient;
 import model.domain.Board;
 import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import org.apache.hc.core5.http.ClassicHttpRequest;
-import model.client.HttpClient;
-import apache.request.RequestBuilder;
-import apache.request.RequestSender;
 
 public class ApacheClient implements HttpClient {
     private final RequestBuilder requestBuilder;

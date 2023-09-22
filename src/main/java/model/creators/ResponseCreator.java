@@ -3,7 +3,6 @@ package model.creators;
 import model.client.codes.StatusCode;
 import model.domain.Board;
 import model.domain.User;
-import model.test.validation.ResponseValidator;
 import model.wrapper.ResponseWrapper;
 import utility.config.BoardConfig;
 import utility.config.UserConfig;

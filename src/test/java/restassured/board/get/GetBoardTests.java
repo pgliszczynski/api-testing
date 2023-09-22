@@ -6,13 +6,8 @@ import model.domain.Board;
 import model.test.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import restassured.client.RestAssuredClient;
-import utility.config.BoardConfig;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertTrue;
 
 public class GetBoardTests extends BaseTest<Board> {
 
@@ -25,6 +20,7 @@ public class GetBoardTests extends BaseTest<Board> {
         //Then
         validator.checkStatusCode();
         validator.checkHasBody();
+        validator.checkId(actualResponse.getBody().getId(), id);
         validator.checkResponse();
     }
 

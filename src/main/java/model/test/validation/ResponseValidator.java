@@ -5,7 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class ResponseValidator<T> {
     private final ResponseWrapper<T> expectedResponse;
@@ -20,8 +21,8 @@ public class ResponseValidator<T> {
 
     public void checkStatusCode() {
         LOGGER.info("Validating status code");
-        LOGGER.info("Expected status code: " + expectedResponse.getStatusCode());
         LOGGER.info("Actual status code: " + actualResponse.getStatusCode());
+        LOGGER.info("Expected status code: " + expectedResponse.getStatusCode());
 
         assertEquals(actualResponse.getStatusCode(), expectedResponse.getStatusCode());
         assertThat(actualResponse.getStatusCode())
@@ -36,10 +37,17 @@ public class ResponseValidator<T> {
                 .isNotNull();
     }
 
+    public void checkId(String actualId, String expectedId) {
+        LOGGER.info("Validating returned ID");
+
+        assertEquals(actualId, expectedId);
+        assertThat(actualId).isEqualTo(expectedId);
+    }
+
     public void checkResponse() {
         LOGGER.info("Validating response");
-        LOGGER.info("Expected response: " + expectedResponse.getBody());
         LOGGER.info("Actual response: " + actualResponse.getBody());
+        LOGGER.info("Expected response: " + expectedResponse.getBody());
 
         assertEquals(actualResponse.getBody(), expectedResponse.getBody());
         assertThat(actualResponse.getBody())

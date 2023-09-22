@@ -1,5 +1,7 @@
 package apache.request;
 
+import apache.response.handler.BoardResponseHandler;
+import apache.response.handler.UserResponseHandler;
 import model.domain.Board;
 import model.domain.User;
 import model.wrapper.ResponseWrapper;
@@ -8,8 +10,6 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import apache.response.handler.BoardResponseHandler;
-import apache.response.handler.UserResponseHandler;
 
 import java.io.IOException;
 

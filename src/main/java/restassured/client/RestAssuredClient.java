@@ -8,9 +8,9 @@ import model.domain.User;
 import model.wrapper.RequestWrapper;
 import model.wrapper.ResponseWrapper;
 import restassured.request.RequestBuilder;
-import restassured.response.ResponseMapper;
 import restassured.request.RequestSender;
 import restassured.response.ResponseBuilder;
+import restassured.response.ResponseMapper;
 import restassured.response.validator.ResponseValidator;
 import utility.config.BoardConfig;
 

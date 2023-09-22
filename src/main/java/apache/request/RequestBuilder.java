@@ -1,25 +1,9 @@
 package apache.request;
 
-import apache.parameters.ParametersMapper;
-import model.wrapper.RequestWrapper;
-import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
-import org.apache.hc.core5.http.ClassicHttpRequest;
-import org.apache.hc.core5.http.NameValuePair;
-import org.apache.hc.core5.http.message.BasicNameValuePair;
-import org.apache.hc.core5.net.URIBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import utility.authorization.AuthorizationUtility;
 import model.client.methods.HttpMethod;
+import model.wrapper.RequestWrapper;
+import org.apache.hc.core5.http.ClassicHttpRequest;
 import utility.url.UrlUtility;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RequestBuilder {
     private final RequestWrapper request;
