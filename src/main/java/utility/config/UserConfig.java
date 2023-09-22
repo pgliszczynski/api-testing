@@ -1,24 +1,27 @@
 package utility.config;
 
-public class UserConfig {
-    private final static String ID = "65082a8cbb67cb72bede5f5b";
-    private final static String FULL_NAME = "Piotr gliszczyński";
-    private final static String USERNAME = "gliszczynskip5";
-    private final static String EMAIL = "gliszczynskip5@gmail.com";
+import utility.file.FileReader;
+
+public class UserConfig extends FileReader {
+    private final static String PARAMETER_ID = "Id";
+    private final static String PARAMETER_FULL_NAME = "FullName";
+    private final static String PARAMETER_USERNAME = "Username";
+    private final static String PARAMETER_EMAIL = "Email";
+    private final static String FILE_NAME = "src/main/resource/user.config";
 
     public static String getId() {
-        return ID;
+        return getData(PARAMETER_ID, FILE_NAME);
     }
 
     public static String getFullName() {
-        return FULL_NAME;
+        return getData(PARAMETER_FULL_NAME, FILE_NAME);
     }
 
     public static String getUsername() {
-        return USERNAME;
+        return getData(PARAMETER_USERNAME, FILE_NAME);
     }
 
     public static String getEmail() {
-        return EMAIL;
+        return getData(PARAMETER_EMAIL, FILE_NAME);
     }
 }

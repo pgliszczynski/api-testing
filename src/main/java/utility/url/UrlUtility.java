@@ -1,12 +1,15 @@
 package utility.url;
 
-public class UrlUtility {
-    private final static String BASE_URL = "https://api.trello.com/1/";
-    private final static String USER_URL = "members/me";
-    private final static String BOARD_URL = "boards";
+import utility.file.FileReader;
+
+public class UrlUtility extends FileReader {
+    private final static String PARAMETER_BASE_URL = "BaseUrl";
+    private final static String PARAMETER_USER_URL = "UserUrl";
+    private final static String PARAMETER_BOARD_URL = "BoardUrl";
+    private final static String FILE_NAME = "src/main/resource/url.config";
 
     public static String getUserUrl() {
-        return getBaseUrl() + USER_URL;
+        return getBaseUrl() + getData(PARAMETER_USER_URL, FILE_NAME);
     }
 
     public static String getBoardUrlWithId(String boardId) {
@@ -14,10 +17,10 @@ public class UrlUtility {
     }
 
     public static String getBoardUrl() {
-        return getBaseUrl() + BOARD_URL;
+        return getBaseUrl() + getData(PARAMETER_BOARD_URL, FILE_NAME);
     }
 
     public static String getBaseUrl() {
-        return BASE_URL;
+        return getData(PARAMETER_BASE_URL, FILE_NAME);
     }
 }

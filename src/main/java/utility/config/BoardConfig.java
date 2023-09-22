@@ -1,14 +1,17 @@
 package utility.config;
 
-public class BoardConfig {
-    private static final String CREATED_BOARD_NAME = "ApiTestBoard";
-    private static final String UPDATED_BOARD_NAME = "UpdateApiTestBoard";
+import utility.file.FileReader;
+
+public class BoardConfig extends FileReader {
+    private static final String PARAMETER_CREATED_BOARD = "CreatedBoard";
+    private static final String PARAMETER_UPDATED_BOARD = "UpdatedBoard";
+    private static final String FILE_NAME = "src/main/resource/board.config";
 
     public static String getCreatedBoardName() {
-        return CREATED_BOARD_NAME;
+        return getData(PARAMETER_CREATED_BOARD, FILE_NAME);
     }
 
     public static String getUpdatedBoardName() {
-        return UPDATED_BOARD_NAME;
+        return getData(PARAMETER_UPDATED_BOARD, FILE_NAME);
     }
 }
