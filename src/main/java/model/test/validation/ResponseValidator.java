@@ -47,7 +47,6 @@ public class ResponseValidator<T> {
     public void checkResponse() {
         LOGGER.info("Validating response");
         LOGGER.info("Actual response: " + actualResponse.getBody());
-        LOGGER.info("Expected response: " + expectedResponse.getBody());
 
         assertEquals(actualResponse.getBody(), expectedResponse.getBody());
         assertThat(actualResponse.getBody())
