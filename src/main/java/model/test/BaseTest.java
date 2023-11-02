@@ -1,5 +1,6 @@
 package model.test;
 
+import io.qameta.allure.Step;
 import model.client.HttpClient;
 import model.test.validation.ResponseValidator;
 import model.wrapper.RequestWrapper;
@@ -18,6 +19,7 @@ public abstract class BaseTest<T> {
     protected static String id;
 
     @BeforeMethod
+    @Step
     public abstract void sendRequest();
 
     @BeforeClass

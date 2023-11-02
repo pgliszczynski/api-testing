@@ -1,6 +1,7 @@
 package apache.board.delete;
 
 import apache.client.ApacheClient;
+import io.qameta.allure.Step;
 import model.creators.RequestCreator;
 import model.creators.ResponseCreator;
 import model.domain.Board;
@@ -21,6 +22,7 @@ public class DeleteBoardTests extends BaseTest<Board> {
         validator.checkStatusCode();
     }
 
+    @Step
     @BeforeMethod
     @Override
     public void sendRequest() {

@@ -1,6 +1,7 @@
 package apache.board.get;
 
 import apache.client.ApacheClient;
+import io.qameta.allure.Step;
 import model.creators.RequestCreator;
 import model.creators.ResponseCreator;
 import model.domain.Board;
@@ -25,6 +26,7 @@ public class GetBoardTests extends BaseTest<Board> {
     }
 
 
+    @Step
     @BeforeMethod
     @Override
     public void sendRequest() {

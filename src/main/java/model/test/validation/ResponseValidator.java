@@ -1,5 +1,6 @@
 package model.test.validation;
 
+import io.qameta.allure.Step;
 import model.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class ResponseValidator<T> {
         this.actualResponse = actualResponse;
     }
 
+    @Step("Validator checks status code of response")
     public void checkStatusCode() {
         LOGGER.info("Validating status code");
         LOGGER.info("Actual status code: " + actualResponse.getStatusCode());
@@ -29,6 +31,7 @@ public class ResponseValidator<T> {
                 .isEqualTo(expectedResponse.getStatusCode());
     }
 
+    @Step("Validator checks if status code is present")
     public void checkHasBody() {
         LOGGER.info("Validating response body existence");
 
@@ -37,6 +40,7 @@ public class ResponseValidator<T> {
                 .isNotNull();
     }
 
+    @Step("Validator checks if response has returned correct id {1}")
     public void checkId(String actualId, String expectedId) {
         LOGGER.info("Validating returned ID");
 
@@ -44,6 +48,7 @@ public class ResponseValidator<T> {
         assertThat(actualId).isEqualTo(expectedId);
     }
 
+    @Step("Validates whole response")
     public void checkResponse() {
         LOGGER.info("Validating response");
         LOGGER.info("Actual response: " + actualResponse.getBody());

@@ -1,5 +1,6 @@
 package retrofit.board.update;
 
+import io.qameta.allure.Step;
 import model.creators.RequestCreator;
 import model.creators.ResponseCreator;
 import model.domain.Board;
@@ -25,6 +26,7 @@ public class UpdateBoardTest extends BaseTest<Board> {
         validator.checkResponse();
     }
 
+    @Step
     @BeforeMethod
     @Override
     public void sendRequest() {
